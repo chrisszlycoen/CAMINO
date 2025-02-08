@@ -28,6 +28,7 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
+
         index: _currentIndex,
         children: _screens,
       ),
