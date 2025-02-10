@@ -39,6 +39,7 @@ class StudentTrackingScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
               margin: const EdgeInsets.all(AppSpacing.md),
+
               padding: const EdgeInsets.only(bottom: 80), // Space for bottom nav
               child: CaminoCard(
                 child: Column(
