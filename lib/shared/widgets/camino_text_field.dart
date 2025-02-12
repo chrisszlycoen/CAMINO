@@ -76,7 +76,7 @@ class _CaminoTextFieldState extends State<CaminoTextField> {
         Text(
           widget.label.toUpperCase(),
           textAlign: widget.centerLabel ? TextAlign.center : TextAlign.start,
-          style: TextStyle(
+          style: TextStyle( 
             color: hintColor,
             fontSize: 12,
             fontWeight: FontWeight.w800,
