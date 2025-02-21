@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
         break;
       case 'parent':
         roleTitle = "Parent Access";
-        break;
+        break; 
       case 'staff':
         roleTitle = "Staff Operations";
         roleGreeting = "Ready for shift?";
