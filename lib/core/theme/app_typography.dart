@@ -100,6 +100,7 @@ class AppTypography {
       bodyLarge: GoogleFonts.inter(
         fontSize: 16,
         fontWeight: FontWeight.normal,
+
         color: AppColors.textPrimaryDark,
       ),
       bodyMedium: GoogleFonts.inter(
