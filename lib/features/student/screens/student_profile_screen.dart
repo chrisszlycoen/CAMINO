@@ -72,8 +72,8 @@ class StudentProfileScreen extends ConsumerWidget {
                   child: CaminoCard(
                     child: Column(
                       children: [
-                        const Icon(Icons.local_fire_department, color: AppColors.error, size: 32),
                         const SizedBox(height: AppSpacing.xs),
+                        const Icon(Icons.local_fire_department, color: AppColors.error, size: 32),
                         Text('${user.streakDays}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
                         Text('Day Streak', style: TextStyle(color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight, fontSize: 12)),
                       ],
