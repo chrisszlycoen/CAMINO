@@ -45,7 +45,7 @@ class StaffDashboard extends StatelessWidget {
                             const StatusBadge(label: 'BOARDING ACTIVE', status: BadgeStatus.info),
                             const SizedBox(height: AppSpacing.xxl),
                             CircularPercentIndicator(
-                              radius: 120.0,
+                              radius: 120.0, 
                               lineWidth: 24.0,
                               animation: true,
                               percent: 32 / 45,
