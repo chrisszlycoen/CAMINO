@@ -8,6 +8,7 @@ class ThemeNotifier extends Notifier<ThemeMode> {
   }
 
   void setTheme(ThemeMode mode) {
+
     state = mode;
   }
 }
