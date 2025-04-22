@@ -4,8 +4,8 @@ import '../../features/auth/screens/role_selection_screen.dart';
 import '../../features/auth/screens/login_screen.dart';
 import '../../features/auth/screens/forgot_password_screen.dart';
 import '../../features/student/screens/student_home.dart';
-import '../../features/parent/screens/parent_home.dart';
 import '../../features/staff/screens/staff_home.dart';
+import '../../features/parent/screens/parent_home.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
