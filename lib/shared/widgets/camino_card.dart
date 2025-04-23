@@ -36,7 +36,7 @@ class CaminoCard extends StatelessWidget {
             : theme.cardTheme.shape is RoundedRectangleBorder
                 ? Border.all(
                     color: (theme.cardTheme.shape as RoundedRectangleBorder).side.color,
-                    width: (theme.cardTheme.shape as RoundedRectangleBorder).side.width,
+                    width: (theme.cardTheme.shape as RoundedRectangleBorder).side.width, 
                   )
                 : null,
         boxShadow: !isDark && !highlighted ? AppColors.premiumShadowLight : null,
