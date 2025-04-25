@@ -22,6 +22,7 @@ class CaminoApp extends ConsumerWidget {
     // within their respective scaffolds if needed. For now, general theme setup.
     return MaterialApp.router(
       title: 'CAMINO',
+
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
