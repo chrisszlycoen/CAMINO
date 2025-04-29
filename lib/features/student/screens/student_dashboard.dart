@@ -123,6 +123,7 @@ class StudentDashboard extends StatelessWidget {
                       const _DashedSeparator(),
                       
                       // Bottom Section: Action or Info
+
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
