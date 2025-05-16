@@ -13,8 +13,8 @@ class Student {
     required this.school,
     required this.grade,
     required this.photoUrl,
-    this.points = 0,
     this.streakDays = 0,
+    this.points = 0,
   });
 }
 
