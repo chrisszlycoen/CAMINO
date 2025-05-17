@@ -68,7 +68,7 @@ class StatusBadge extends StatelessWidget {
           if (status == BadgeStatus.success) ...[
             Container(
               width: 6,
-              height: 6,
+              height: 6, 
               decoration: BoxDecoration(
                 color: textColor,
                 shape: BoxShape.circle,
