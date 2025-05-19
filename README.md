@@ -37,8 +37,8 @@ This document outlines the current state of the project as of revision 235.
 ## Key Points
 
 - Updated core module dependencies
-- Improved error handling across services
 - Enhanced logging and monitoring capabilities
+- Improved error handling across services
 - Optimized database query performance
 
 ## Configuration
