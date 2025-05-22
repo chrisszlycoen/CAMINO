@@ -97,6 +97,7 @@ class _PassengerTile extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(bottom: AppSpacing.sm),
+
       decoration: BoxDecoration(
         color: surfaceElevated,
         borderRadius: AppSpacing.borderRadiusMd,
