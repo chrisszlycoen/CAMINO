@@ -35,7 +35,7 @@ class ParentPaymentsScreen extends StatelessWidget {
                     label: 'Pay Term 4 Fees',
                     type: CaminoButtonType.secondary,
                     icon: Icons.payment,
-                    onPressed: () {},
+                    onPressed: () {}, 
                   ),
                 ],
               ),
