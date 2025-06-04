@@ -83,3 +83,4 @@ class StudentQRPassScreen extends StatelessWidget {
     );
   }
 }
+
