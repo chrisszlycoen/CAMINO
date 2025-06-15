@@ -65,7 +65,7 @@ class _AlertTile extends StatelessWidget {
     required this.time,
     required this.icon,
     required this.color,
-    this.isNew = false,
+    this.isNew = false, 
   });
 
   @override
