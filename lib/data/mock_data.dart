@@ -48,3 +48,4 @@ class MockData {
     const Student(id: 'RW-STU-108', name: 'Liam Wilson', school: 'KICS', grade: 'Grade 6', photoUrl: ''),
   ];
 }
+
