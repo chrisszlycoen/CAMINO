@@ -19,6 +19,7 @@ class AppColors {
   static const Color surfaceDarkElevated = Color(0xFF2C2C2E);
   
   // Surface Colors - Light Theme (Parent)
+
   static const Color backgroundLight = Color(0xFFF2F2F7); // iOS grouped background
   static const Color surfaceLight = Color(0xFFFFFFFF);    // Pure White
   static const Color surfaceLightElevated = Color(0xFFFFFFFF);
