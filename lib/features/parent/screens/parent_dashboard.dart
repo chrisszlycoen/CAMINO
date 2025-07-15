@@ -13,8 +13,8 @@ class ParentDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     final child = MockData.currentUser; // Mock child data
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final surfaceColor = isDark ? AppColors.surfaceDark : AppColors.surfaceLight;
     final textColor = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final surfaceColor = isDark ? AppColors.surfaceDark : AppColors.surfaceLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final borderColor = isDark ? AppColors.borderDark : AppColors.borderLight;
     final shadow = isDark ? [BoxShadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 10)] : AppColors.premiumShadowLight;
