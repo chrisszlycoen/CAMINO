@@ -25,7 +25,7 @@ class AppColors {
   static const Color surfaceLightElevated = Color(0xFFFFFFFF);
   
   // Text Colors - Dark Theme
-  static const Color textPrimaryDark = Color(0xFFFFFFFF);
+  static const Color textPrimaryDark = Color(0xFFFFFFFF); 
   static const Color textSecondaryDark = Color(0xFF8E8E93);
 
   // Text Colors - Light Theme
