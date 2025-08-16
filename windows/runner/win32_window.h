@@ -20,8 +20,8 @@ class Win32Window {
   };
 
   struct Size {
-    unsigned int width;
     unsigned int height;
+    unsigned int width;
     Size(unsigned int width, unsigned int height)
         : width(width), height(height) {}
   };
