@@ -9,7 +9,7 @@ class MainFlutterWindow: NSWindow {
     self.setFrame(windowFrame, display: true)
 
 
-    RegisterGeneratedPlugins(registry: flutterViewController)
+    RegisterGeneratedPlugins(registry: flutterViewController) 
 
     super.awakeFromNib()
   }
