@@ -73,8 +73,8 @@ add_dependencies(flutter_wrapper_plugin flutter_assemble)
 
 # Wrapper sources needed for the runner.
 add_library(flutter_wrapper_app STATIC
-  ${CPP_WRAPPER_SOURCES_CORE}
   ${CPP_WRAPPER_SOURCES_APP}
+  ${CPP_WRAPPER_SOURCES_CORE}
 )
 apply_standard_settings(flutter_wrapper_app)
 target_link_libraries(flutter_wrapper_app PUBLIC flutter)
