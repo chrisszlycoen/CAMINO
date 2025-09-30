@@ -85,4 +85,3 @@ class StaffScannerScreen extends StatelessWidget {
     );
   }
 }
-
