@@ -30,6 +30,7 @@ class StaffRouteScreen extends StatelessWidget {
 
           Align(
             alignment: Alignment.centerLeft,
+
             child: Container(
               width: 300,
               margin: const EdgeInsets.all(AppSpacing.md),
