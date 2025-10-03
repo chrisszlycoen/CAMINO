@@ -79,7 +79,7 @@ class StudentProfileScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                ),
+                ), 
               ],
             ),
             
