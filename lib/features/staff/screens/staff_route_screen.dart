@@ -85,7 +85,7 @@ class _RouteStopTile extends StatelessWidget {
     final textPrimary = isDark ? Colors.white : AppColors.textPrimaryLight;
     final Color markerColor = isCompleted ? AppColors.success : (isInProgress ? AppColors.primary : borderColor);
 
-    return IntrinsicHeight(
+    return IntrinsicHeight( 
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
