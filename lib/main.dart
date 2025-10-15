@@ -9,7 +9,7 @@ void main() {
     const ProviderScope(
       child: CaminoApp(),
     ),
-  );
+  ); 
 }
 
 class CaminoApp extends ConsumerWidget {
