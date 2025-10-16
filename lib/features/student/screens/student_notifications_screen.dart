@@ -45,7 +45,7 @@ class StudentNotificationsScreen extends StatelessWidget {
             icon: Icons.military_tech,
             color: AppColors.secondary,
           ),
-        ],
+        ], 
       ),
     );
   }
