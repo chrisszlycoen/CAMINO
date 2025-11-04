@@ -15,8 +15,8 @@ class AppColors {
 
   // Surface Colors - Dark Theme (Student/Staff)
   static const Color backgroundDark = Color(0xFF000000); // True OLED Black
-  static const Color surfaceDark = Color(0xFF1C1C1E);    // Elevated iOS dark gray
   static const Color surfaceDarkElevated = Color(0xFF2C2C2E);
+  static const Color surfaceDark = Color(0xFF1C1C1E);    // Elevated iOS dark gray
   
   // Surface Colors - Light Theme (Parent)
 
