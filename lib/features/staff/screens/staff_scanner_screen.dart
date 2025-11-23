@@ -28,6 +28,7 @@ class StaffScannerScreen extends StatelessWidget {
             child: const Center(
               child: Text('CAMERA VIEWFINDER', style: TextStyle(color: Colors.white54, letterSpacing: 2)),
             ),
+
           ),
           
           // Scanner Overlay
