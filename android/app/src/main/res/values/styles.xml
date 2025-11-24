@@ -16,4 +16,3 @@
         <item name="android:windowBackground">?android:colorBackground</item>
     </style> 
 </resources>
-
