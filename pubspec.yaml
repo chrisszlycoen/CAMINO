@@ -84,8 +84,8 @@ flutter:
   # example:
   # fonts:
   #   - family: Schyler
-  #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
+  #     fonts:
   #       - asset: fonts/Schyler-Italic.ttf
   #   - family: Trajan Pro
   #         style: italic
