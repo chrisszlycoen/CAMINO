@@ -35,4 +35,3 @@ class AppSpacing {
   static const BorderRadius borderRadiusLg = BorderRadius.all(Radius.circular(radiusLg));
   static const BorderRadius borderRadiusXl = BorderRadius.all(Radius.circular(radiusXl));
 }
-
