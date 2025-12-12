@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 /// Ultra-clean structural Navigation Bar
 class CaminoBottomNavBar extends StatelessWidget {
-  final int currentIndex;
   final ValueChanged<int> onTap;
+  final int currentIndex;
   final List<BottomNavigationBarItem> items;
 
   const CaminoBottomNavBar({
