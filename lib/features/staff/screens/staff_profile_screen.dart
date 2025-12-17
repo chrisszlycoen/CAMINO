@@ -11,7 +11,7 @@ import '../../../core/theme/theme_provider.dart';
 class StaffProfileScreen extends ConsumerWidget {
   const StaffProfileScreen({super.key});
 
-  @override
+  @override 
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
