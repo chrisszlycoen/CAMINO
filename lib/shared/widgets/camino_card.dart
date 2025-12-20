@@ -8,8 +8,8 @@ class CaminoCard extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final VoidCallback? onTap;
   final Color? backgroundColor;
-  final bool highlighted;
   final double? width;
+  final bool highlighted;
 
   const CaminoCard({
     super.key,
