@@ -99,6 +99,7 @@ class _NotificationTile extends StatelessWidget {
           const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Column(
+
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
