@@ -16,7 +16,7 @@ class CaminoApp extends ConsumerWidget {
   const CaminoApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) { 
     // For this build, we use ThemeMode.system
     // But Parent routes will force Light Theme, Student/Staff will force Dark Theme
     // within their respective scaffolds if needed. For now, general theme setup.
