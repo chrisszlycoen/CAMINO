@@ -53,7 +53,7 @@ class ParentProfileScreen extends ConsumerWidget {
             
             // Linked Children Title
             const Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.centerLeft, 
               child: Text('Linked Children', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
             ),
             const SizedBox(height: AppSpacing.sm),
