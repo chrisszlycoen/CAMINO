@@ -29,7 +29,7 @@ class StaffProfileScreen extends ConsumerWidget {
             // User Header
             Center(
               child: Column(
-                children: [
+                children: [ 
                   const CircleAvatar(
                     radius: 50,
                     backgroundColor: AppColors.secondary,
