@@ -20,3 +20,4 @@ G_DECLARE_FINAL_TYPE(MyApplication,
 MyApplication* my_application_new();
 
 #endif  // FLUTTER_MY_APPLICATION_H_
+
