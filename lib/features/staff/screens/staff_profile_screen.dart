@@ -76,6 +76,7 @@ class StaffProfileScreen extends ConsumerWidget {
               alignment: Alignment.centerLeft,
               child: Text('Settings & Info', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
             ),
+
             const SizedBox(height: AppSpacing.sm),
             CaminoCard(
               padding: EdgeInsets.zero,
