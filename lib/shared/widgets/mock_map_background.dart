@@ -17,7 +17,7 @@ class MockMapBackground extends StatelessWidget {
         children: [
           Positioned.fill(
             child: CustomPaint(
-              painter: _GridPainter(color: gridColor),
+              painter: _GridPainter(color: gridColor), 
             ),
           ),
           Center(
