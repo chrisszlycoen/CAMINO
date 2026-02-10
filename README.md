@@ -54,3 +54,4 @@ This document outlines the current state of the project as of revision 235.
 
 > Last updated for commit #235.
 > See the changelog for detailed version history.
+
