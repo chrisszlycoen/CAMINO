@@ -55,6 +55,7 @@ class ParentPaymentsScreen extends StatelessWidget {
             _PaymentTile(
               title: 'Term 2 Transport Fee',
               date: 'May 10, 2026',
+
               amount: 'RWF 45,000',
               method: 'MTN Mobile Money',
               status: 'Completed',
