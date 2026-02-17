@@ -78,8 +78,8 @@ class _PaymentTile extends StatelessWidget {
   final String title;
   final String date;
   final String amount;
-  final String method;
   final String status;
+  final String method;
 
   const _PaymentTile({
     required this.title,
