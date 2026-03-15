@@ -1,0 +1,15 @@
+# Project TODO — Update 2
+
+## High Priority
+- [ ] Fix users memory leak under load
+- [ ] Add retry logic to search client
+- [x] Update core configuration schema
+
+## Medium Priority
+- [ ] Refactor payments to use async/await
+- [ ] Add pagination to storage list endpoint
+- [x] Improve auth test coverage
+
+## Low Priority
+- [ ] Add dark mode to metrics UI
+- [ ] Document storage internal API
