@@ -16,7 +16,7 @@ This document outlines the current state of the project as of revision 14.
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `max_retries` | 10 | Maximum retry attempts |
-# Architecture Overview
+# Architecture Overview [updated rev 88]
 
 ## Overview
 
@@ -54,7 +54,7 @@ This document outlines the current state of the project as of revision 30.
 
 > Last updated for commit #30.
 > See the changelog for detailed version history.
-
+ [updated rev 88]
 <!-- Update 34 -->
 # Migration Guide
 
@@ -75,7 +75,7 @@ This document outlines the current state of the project as of revision 79.
 |-----------|---------|-------------|
 | `max_retries` | 6 | Maximum retry attempts |
 | `timeout` | 56s | Request timeout |
-| `batch_size` | 115 | Processing batch size |
+| `batch_size` | 115 | Processing batch size | [updated rev 88]
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
