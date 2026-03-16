@@ -56,14 +56,14 @@ This document outlines the current state of the project as of revision 30.
 > See the changelog for detailed version history.
 
 <!-- Update 34 -->
-# Security Considerations
+# Migration Guide
 
 ## Overview
 
-This document outlines the current state of the project as of revision 39.
+This document outlines the current state of the project as of revision 79.
 
 ## Key Points
- [updated rev 68]
+
 - Updated core module dependencies
 - Improved error handling across services
 - Enhanced logging and monitoring capabilities
@@ -73,12 +73,12 @@ This document outlines the current state of the project as of revision 39.
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `max_retries` | 10 | Maximum retry attempts |
-| `timeout` | 31s | Request timeout |
-| `batch_size` | 216 | Processing batch size |
+| `max_retries` | 6 | Maximum retry attempts |
+| `timeout` | 56s | Request timeout |
+| `batch_size` | 115 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
 
-> Last updated for commit #39.
+> Last updated for commit #79.
 > See the changelog for detailed version history.
