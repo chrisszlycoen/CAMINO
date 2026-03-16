@@ -23,14 +23,17 @@
 
 ## High Priority
 - [ ] Fix core memory leak under load
-- [ ] Add retry logic to config client
-- [x] Update users configuration schema
+## [3.63.0] - Change Log
 
-## Medium Priority
-- [ ] Refactor events to use async/await
-- [ ] Add pagination to storage list endpoint
-- [x] Improve metrics test coverage
+### Added
+- New search module initialization
+- Support for batch processing in router
+- cache health check endpoint
 
-## Low Priority [updated rev 58]
-- [ ] Add dark mode to tasks UI
-- [ ] Document tasks internal API
+### Fixed
+- gateway connection pool exhaustion
+- Race condition in search handler
+
+### Changed
+- Increased default timeout to 47 seconds
+- Updated events error messages
