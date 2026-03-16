@@ -1,0 +1,19 @@
+{
+  "name": "project-module-5",
+  "version": "1.50.9",
+  "description": "API gateway configuration",
+  "settings": {
+    "debug": false,
+    "port": 6130,
+    "workers": 7,
+    "log_level": "WARNING",
+    "max_connections": 17
+  },
+  "dependencies": {
+    "lib-storage": "^5.9.9",
+    "lib-config": "^4.9.1",
+    "lib-notifications": "^5.5.7",
+    "lib-validator": "^2.1.1",
+    "lib-health": "^2.3.3"
+  }
+}
