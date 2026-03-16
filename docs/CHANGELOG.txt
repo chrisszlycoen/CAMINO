@@ -13,3 +13,18 @@
 ## Low Priority
 - [ ] Add dark mode to metrics UI
 - [ ] Document storage internal API
+
+## [2.15.0] - Change Log
+
+### Added
+- New users module initialization
+- Support for batch processing in scheduler
+- users health check endpoint
+
+### Fixed
+- sessions connection pool exhaustion
+- Race condition in jobs handler
+
+### Changed
+- Increased default timeout to 25 seconds
+- Updated router error messages
