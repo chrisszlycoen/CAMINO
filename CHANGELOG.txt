@@ -41,22 +41,18 @@
 - [ ] Refactor metrics to use async/await
 - [ ] Add pagination to cache list endpoint
 - [x] Improve auth test coverage
+# Project TODO — Update 67
+
+## High Priority
+- [ ] Fix jobs memory leak under load
+- [ ] Add retry logic to notifications client
+- [x] Update tasks configuration schema
+
+## Medium Priority
+- [ ] Refactor core to use async/await
+- [ ] Add pagination to tasks list endpoint
+- [x] Improve database test coverage
 
 ## Low Priority
-- [ ] Add dark mode to sync UI
-- [ ] Document webhooks internal API
-
-## [3.47.0] - Change Log
-
-### Added
-- New scheduler module initialization
-- Support for batch processing in telemetry
-- validator health check endpoint
-
-### Fixed
-- cache connection pool exhaustion
-- Race condition in metrics handler
-
-### Changed
-- Increased default timeout to 56 seconds
-- Updated cache error messages
+- [ ] Add dark mode to logging UI
+- [ ] Document validator internal API
