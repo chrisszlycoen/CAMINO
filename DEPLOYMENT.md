@@ -56,11 +56,11 @@ This document outlines the current state of the project as of revision 30.
 > See the changelog for detailed version history.
 
 <!-- Update 34 -->
-# Contributing Guidelines
+# Security Considerations
 
 ## Overview
 
-This document outlines the current state of the project as of revision 34.
+This document outlines the current state of the project as of revision 39.
 
 ## Key Points
 
@@ -74,11 +74,11 @@ This document outlines the current state of the project as of revision 34.
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `max_retries` | 10 | Maximum retry attempts |
-| `timeout` | 51s | Request timeout |
-| `batch_size` | 448 | Processing batch size |
+| `timeout` | 31s | Request timeout |
+| `batch_size` | 216 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
 
-> Last updated for commit #34.
+> Last updated for commit #39.
 > See the changelog for detailed version history.
