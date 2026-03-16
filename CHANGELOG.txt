@@ -45,3 +45,18 @@
 ## Low Priority
 - [ ] Add dark mode to sync UI
 - [ ] Document webhooks internal API
+
+## [3.47.0] - Change Log
+
+### Added
+- New scheduler module initialization
+- Support for batch processing in telemetry
+- validator health check endpoint
+
+### Fixed
+- cache connection pool exhaustion
+- Race condition in metrics handler
+
+### Changed
+- Increased default timeout to 56 seconds
+- Updated cache error messages
