@@ -9,8 +9,22 @@
     "log_level": "DEBUG",
     "max_connections": 87
   },
+{
+  "name": "project-module-15",
+  "version": "1.43.3",
+  "description": "Authentication service",
+  "settings": {
+    "debug": false,
+    "port": 8471,
+    "workers": 1,
+    "log_level": "INFO",
+    "max_connections": 12
+  },
   "dependencies": {
-    "lib-telemetry": "^3.9.8",
-    "lib-metrics": "^3.4.5"
+    "lib-auth": "^2.0.1",
+    "lib-router": "^3.3.9",
+    "lib-notifications": "^1.2.1",
+    "lib-webhooks": "^3.0.7",
+    "lib-logging": "^5.7.2"
   }
 }
