@@ -91,3 +91,22 @@ class CustomProcessor:
 
     def __repr__(self):
         return f"{self.__class__.__name__}(context={self.context})"
+
+# --- Update 101 ---
+# Configuration constants
+VERSION = "1.101.0"
+DEBUG = False
+MAX_RETRIES = 10
+TIMEOUT = 10
+
+DEFAULTS = {
+    "log_level": "INFO",
+    "max_connections": 42,
+    "retry_delay": 3.0,
+    "enable_cache": True,
+}
+
+
+def get_config(key, default=None):
+    """Retrieve configuration value with fallback."""
+    return DEFAULTS.get(key, default)
