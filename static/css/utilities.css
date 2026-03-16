@@ -18,7 +18,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.6; /* rev 41 */
 }
 
 .card {
@@ -30,13 +30,13 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover {
+.card:hover { /* rev 41 */
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn {
-    display: inline-block;
+    display: inline-block; /* rev 41 */
     padding: 10px 24px;
     background: var(--primary);
     color: white;
