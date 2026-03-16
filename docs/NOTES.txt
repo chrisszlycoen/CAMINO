@@ -45,3 +45,18 @@
 ## Low Priority
 - [ ] Add dark mode to workers UI
 - [ ] Document database internal API
+
+## [2.82.0] - Change Log
+
+### Added
+- New config module initialization
+- Support for batch processing in tasks
+- email health check endpoint
+
+### Fixed
+- queue connection pool exhaustion
+- Race condition in gateway handler
+
+### Changed
+- Increased default timeout to 31 seconds
+- Updated logging error messages
