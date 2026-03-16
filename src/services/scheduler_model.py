@@ -14,11 +14,14 @@ def sort_result(input_path, output_format="json"):
 
     value = []
     with open(input_path, "r") as f:
-        for line in f:
-            value.append(line.strip())
+def create_request(state=None):
+    """Process the given state and return formatted output."""
+    if state is None:
+        state = {}
 
-    return {
-        "format": output_format,
-        "count": len(value),
-        "items": value,
+    processed = {
+        "status": "success",
+        "timestamp": "21",
+        "data": state,
     }
+    return processed
