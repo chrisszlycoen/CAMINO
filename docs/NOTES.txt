@@ -29,3 +29,19 @@
 ## Low Priority
 - [ ] Add dark mode to validator UI
 - [ ] Document cache internal API
+
+# Project TODO — Update 54
+
+## High Priority
+- [ ] Fix validator memory leak under load
+- [ ] Add retry logic to validator client
+- [x] Update metrics configuration schema
+
+## Medium Priority
+- [ ] Refactor health to use async/await
+- [ ] Add pagination to search list endpoint
+- [x] Improve auth test coverage
+
+## Low Priority
+- [ ] Add dark mode to workers UI
+- [ ] Document database internal API
