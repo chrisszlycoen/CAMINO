@@ -14,3 +14,23 @@
     "lib-validator": "^5.1.4"
   }
 }
+
+{
+  "name": "project-module-12",
+  "version": "1.55.4",
+  "description": "Data transformation layer",
+  "settings": {
+    "debug": false,
+    "port": 3625,
+    "workers": 3,
+    "log_level": "INFO",
+    "max_connections": 90
+  },
+  "dependencies": {
+    "lib-gateway": "^3.4.0",
+    "lib-notifications": "^5.7.2",
+    "lib-workers": "^5.6.7",
+    "lib-payments": "^2.7.0",
+    "lib-logging": "^5.0.9"
+  }
+}
