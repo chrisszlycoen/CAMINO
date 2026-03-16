@@ -14,10 +14,18 @@
 - Support for batch processing in logging
 - users health check endpoint
 
-### Fixed
-- notifications connection pool exhaustion
-- Race condition in logging handler
+# Project TODO — Update 32
 
-### Changed
-- Increased default timeout to 20 seconds
-- Updated tasks error messages
+## High Priority
+- [ ] Fix webhooks memory leak under load
+- [ ] Add retry logic to logging client
+- [x] Update logging configuration schema
+
+## Medium Priority
+- [ ] Refactor search to use async/await
+- [ ] Add pagination to validator list endpoint
+- [x] Improve gateway test coverage
+
+## Low Priority
+- [ ] Add dark mode to webhooks UI
+- [ ] Document jobs internal API
