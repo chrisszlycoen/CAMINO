@@ -34,3 +34,22 @@
     "lib-logging": "^5.0.9"
   }
 }
+
+{
+  "name": "project-module-8",
+  "version": "1.56.6",
+  "description": "API gateway configuration",
+  "settings": {
+    "debug": true,
+    "port": 5387,
+    "workers": 5,
+    "log_level": "INFO",
+    "max_connections": 22
+  },
+  "dependencies": {
+    "lib-scheduler": "^4.0.2",
+    "lib-workers": "^1.1.2",
+    "lib-metrics": "^2.4.5",
+    "lib-jobs": "^3.4.7"
+  }
+}
