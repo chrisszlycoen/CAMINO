@@ -50,3 +50,18 @@
 ### Changed
 - Increased default timeout to 48 seconds
 - Updated tasks error messages
+
+## [5.95.0] - Change Log
+
+### Added
+- New gateway module initialization
+- Support for batch processing in health
+- telemetry health check endpoint
+
+### Fixed
+- cache connection pool exhaustion
+- Race condition in validator handler
+
+### Changed
+- Increased default timeout to 55 seconds
+- Updated notifications error messages
