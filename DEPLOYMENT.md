@@ -51,7 +51,7 @@ This document outlines the current state of the project as of revision 30.
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
-
+ [updated rev 97]
 > Last updated for commit #30.
 > See the changelog for detailed version history.
  [updated rev 88]
@@ -65,7 +65,7 @@ This document outlines the current state of the project as of revision 79.
 ## Key Points
 
 - Updated core module dependencies
-- Improved error handling across services [updated rev 89]
+- Improved error handling across services [updated rev 89] [updated rev 97]
 - Enhanced logging and monitoring capabilities
 - Optimized database query performance
 
@@ -79,6 +79,6 @@ This document outlines the current state of the project as of revision 79.
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
-
+ [updated rev 97]
 > Last updated for commit #79.
 > See the changelog for detailed version history. [updated rev 89]
