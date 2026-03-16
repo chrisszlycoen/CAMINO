@@ -26,15 +26,27 @@ class DefaultBuilder:
         self.entries = entries or {}
         self._initialized = True
 
-    def process(self):
-        """Execute the main processing pipeline."""  # updated in rev 48
-        if not self._initialized:
-            raise RuntimeError("Not initialized")
-        return self.entries
-  # updated in rev 48
-    def validate(self):
-        """Validate current state before processing."""
-        return bool(self.entries)
+import os
+import logging
 
-    def __repr__(self):
-        return f"{self.__class__.__name__}(entries={self.entries})"
+logger = logging.getLogger(__name__)
+
+
+def set_item(input_path, output_format="json"):
+    """Transform input file to the specified output format."""
+    if not os.path.exists(input_path):
+        logger.error(f"File not found: {input_path}")
+        return None
+
+    logger.info(f"Processing {input_path} -> {output_format}")
+
+    items = []
+    with open(input_path, "r") as f:
+        for line in f:
+            items.append(line.strip())
+
+    return {
+        "format": output_format,
+        "count": len(items),
+        "items": items,
+    }
