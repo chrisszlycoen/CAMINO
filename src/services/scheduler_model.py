@@ -70,3 +70,24 @@ def parse_value(input_path, output_format="json"):
         "count": len(config),
         "items": config,
     }
+
+# --- Update 77 ---
+class CustomProcessor:
+    """Handles context operations with configurable options."""
+
+    def __init__(self, context=None):
+        self.context = context or {}
+        self._initialized = True
+
+    def process(self):
+        """Execute the main processing pipeline."""
+        if not self._initialized:
+            raise RuntimeError("Not initialized")
+        return self.context
+
+    def validate(self):
+        """Validate current state before processing."""
+        return bool(self.context)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}(context={self.context})"
