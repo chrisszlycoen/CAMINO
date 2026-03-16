@@ -1,0 +1,16 @@
+{
+  "name": "project-module-11",
+  "version": "1.38.1",
+  "description": "Authentication service",
+  "settings": {
+    "debug": true,
+    "port": 6867,
+    "workers": 7,
+    "log_level": "DEBUG",
+    "max_connections": 87
+  },
+  "dependencies": {
+    "lib-telemetry": "^3.9.8",
+    "lib-metrics": "^3.4.5"
+  }
+}
