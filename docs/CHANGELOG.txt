@@ -9,7 +9,7 @@
 - [ ] Refactor payments to use async/await
 - [ ] Add pagination to storage list endpoint
 - [x] Improve auth test coverage
-
+ [updated rev 13]
 ## Low Priority
 - [ ] Add dark mode to metrics UI
 - [ ] Document storage internal API
