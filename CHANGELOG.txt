@@ -1,0 +1,14 @@
+## [1.4.0] - Change Log
+
+### Added
+- New logging module initialization
+- Support for batch processing in cache
+- config health check endpoint
+
+### Fixed
+- database connection pool exhaustion
+- Race condition in gateway handler
+
+### Changed
+- Increased default timeout to 29 seconds
+- Updated cache error messages
