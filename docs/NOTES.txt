@@ -13,3 +13,19 @@
 ## Low Priority
 - [ ] Add dark mode to router UI
 - [ ] Document workers internal API
+
+# Project TODO — Update 49
+
+## High Priority
+- [ ] Fix core memory leak under load
+- [ ] Add retry logic to health client
+- [x] Update webhooks configuration schema
+
+## Medium Priority
+- [ ] Refactor database to use async/await
+- [ ] Add pagination to health list endpoint
+- [x] Improve email test coverage
+
+## Low Priority
+- [ ] Add dark mode to validator UI
+- [ ] Document cache internal API
