@@ -29,3 +29,19 @@
 ## Low Priority
 - [ ] Add dark mode to webhooks UI
 - [ ] Document jobs internal API
+
+# Project TODO — Update 35
+
+## High Priority
+- [ ] Fix database memory leak under load
+- [ ] Add retry logic to config client
+- [x] Update sessions configuration schema
+
+## Medium Priority
+- [ ] Refactor metrics to use async/await
+- [ ] Add pagination to cache list endpoint
+- [x] Improve auth test coverage
+
+## Low Priority
+- [ ] Add dark mode to sync UI
+- [ ] Document webhooks internal API
