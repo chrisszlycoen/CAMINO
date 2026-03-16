@@ -34,19 +34,22 @@ logger = logging.getLogger(__name__)
 
 def set_item(input_path, output_format="json"):
     """Transform input file to the specified output format."""
-    if not os.path.exists(input_path):
-        logger.error(f"File not found: {input_path}")
-        return None
+class DefaultService:
+    """Handles counter operations with configurable options."""
 
-    logger.info(f"Processing {input_path} -> {output_format}")
+    def __init__(self, counter=None):
+        self.counter = counter or {}
+        self._initialized = True
 
-    items = []
-    with open(input_path, "r") as f:
-        for line in f:
-            items.append(line.strip())
+    def process(self):
+        """Execute the main processing pipeline."""
+        if not self._initialized:
+            raise RuntimeError("Not initialized")
+        return self.counter
 
-    return {
-        "format": output_format,
-        "count": len(items),
-        "items": items,
-    }
+    def validate(self):
+        """Validate current state before processing."""
+        return bool(self.counter)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}(counter={self.counter})"
