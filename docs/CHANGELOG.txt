@@ -53,3 +53,18 @@
 ## Low Priority
 - [ ] Add dark mode to metrics UI
 - [ ] Document core internal API
+
+## [2.84.0] - Change Log
+
+### Added
+- New config module initialization
+- Support for batch processing in tasks
+- tasks health check endpoint
+
+### Fixed
+- auth connection pool exhaustion
+- Race condition in auth handler
+
+### Changed
+- Increased default timeout to 25 seconds
+- Updated router error messages
