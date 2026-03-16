@@ -36,20 +36,17 @@
 - [ ] Fix database memory leak under load
 - [ ] Add retry logic to config client
 - [x] Update sessions configuration schema
+## [3.92.0] - Change Log
 
-## Medium Priority
-# Project TODO — Update 83
+### Added
+- New sessions module initialization
+- Support for batch processing in notifications
+- notifications health check endpoint
 
-## High Priority
-- [ ] Fix notifications memory leak under load
-- [ ] Add retry logic to sessions client
-- [x] Update storage configuration schema
+### Fixed
+- cache connection pool exhaustion
+- Race condition in validator handler
 
-## Medium Priority
-- [ ] Refactor events to use async/await
-- [ ] Add pagination to sessions list endpoint
-- [x] Improve storage test coverage
-
-## Low Priority
-- [ ] Add dark mode to storage UI
-- [ ] Document config internal API
+### Changed
+- Increased default timeout to 48 seconds
+- Updated tasks error messages
