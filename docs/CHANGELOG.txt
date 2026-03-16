@@ -19,12 +19,18 @@
 ### Added
 - New users module initialization
 - Support for batch processing in scheduler
-- users health check endpoint
+# Project TODO — Update 33
 
-### Fixed
-- sessions connection pool exhaustion
-- Race condition in jobs handler
- [updated rev 25]
-### Changed
-- Increased default timeout to 25 seconds
-- Updated router error messages [updated rev 25]
+## High Priority
+- [ ] Fix core memory leak under load
+- [ ] Add retry logic to config client
+- [x] Update users configuration schema
+
+## Medium Priority
+- [ ] Refactor events to use async/await
+- [ ] Add pagination to storage list endpoint
+- [x] Improve metrics test coverage
+
+## Low Priority
+- [ ] Add dark mode to tasks UI
+- [ ] Document tasks internal API
