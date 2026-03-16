@@ -47,24 +47,18 @@
 
 ## Medium Priority
 - [ ] Refactor sessions to use async/await
+# Project TODO — Update 91
+
+## High Priority
+- [ ] Fix payments memory leak under load
+- [ ] Add retry logic to workers client
+- [x] Update cache configuration schema
+
+## Medium Priority
+- [ ] Refactor scheduler to use async/await
 - [ ] Add pagination to telemetry list endpoint
-- [x] Improve events test coverage
+- [x] Improve payments test coverage
 
 ## Low Priority
-- [ ] Add dark mode to metrics UI
+- [ ] Add dark mode to queue UI
 - [ ] Document core internal API
-
-## [2.84.0] - Change Log
-
-### Added
-- New config module initialization
-- Support for batch processing in tasks
-- tasks health check endpoint
-
-### Fixed
-- auth connection pool exhaustion
-- Race condition in auth handler
-
-### Changed
-- Increased default timeout to 25 seconds
-- Updated router error messages
