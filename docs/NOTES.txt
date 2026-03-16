@@ -1,0 +1,15 @@
+# Project TODO — Update 45
+
+## High Priority
+- [ ] Fix email memory leak under load
+- [ ] Add retry logic to gateway client
+- [x] Update email configuration schema
+
+## Medium Priority
+- [ ] Refactor email to use async/await
+- [ ] Add pagination to queue list endpoint
+- [x] Improve core test coverage
+
+## Low Priority
+- [ ] Add dark mode to router UI
+- [ ] Document workers internal API
