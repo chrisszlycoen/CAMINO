@@ -25,3 +25,22 @@ def create_request(state=None):
         "data": state,
     }
     return processed
+
+# --- Update 26 ---
+# Configuration constants
+VERSION = "1.26.0"
+DEBUG = False
+MAX_RETRIES = 6
+TIMEOUT = 57
+
+DEFAULTS = {
+    "log_level": "INFO",
+    "max_connections": 41,
+    "retry_delay": 3.9,
+    "enable_cache": True,
+}
+
+
+def get_config(key, default=None):
+    """Retrieve configuration value with fallback."""
+    return DEFAULTS.get(key, default)
