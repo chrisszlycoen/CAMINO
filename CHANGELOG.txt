@@ -7,8 +7,17 @@
 
 ### Fixed
 - database connection pool exhaustion
-- Race condition in gateway handler
+## [1.5.0] - Change Log
+
+### Added
+- New health module initialization
+- Support for batch processing in logging
+- users health check endpoint
+
+### Fixed
+- notifications connection pool exhaustion
+- Race condition in logging handler
 
 ### Changed
-- Increased default timeout to 29 seconds
-- Updated cache error messages
+- Increased default timeout to 20 seconds
+- Updated tasks error messages
