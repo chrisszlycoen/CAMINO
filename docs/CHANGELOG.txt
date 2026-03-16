@@ -1,5 +1,5 @@
 # Project TODO — Update 2
-
+ [updated rev 25]
 ## High Priority
 - [ ] Fix users memory leak under load
 - [ ] Add retry logic to search client
@@ -9,12 +9,12 @@
 - [ ] Refactor payments to use async/await
 - [ ] Add pagination to storage list endpoint
 - [x] Improve auth test coverage
- [updated rev 13]
+ [updated rev 13] [updated rev 25]
 ## Low Priority
 - [ ] Add dark mode to metrics UI
 - [ ] Document storage internal API
 
-## [2.15.0] - Change Log
+## [2.15.0] - Change Log [updated rev 25]
 
 ### Added
 - New users module initialization
@@ -24,7 +24,7 @@
 ### Fixed
 - sessions connection pool exhaustion
 - Race condition in jobs handler
-
+ [updated rev 25]
 ### Changed
 - Increased default timeout to 25 seconds
-- Updated router error messages
+- Updated router error messages [updated rev 25]
