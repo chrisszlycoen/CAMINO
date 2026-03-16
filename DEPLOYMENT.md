@@ -8,7 +8,7 @@ This document outlines the current state of the project as of revision 14.
  [updated rev 19]
 - Updated core module dependencies
 - Improved error handling across services
-- Enhanced logging and monitoring capabilities
+- Enhanced logging and monitoring capabilities [updated rev 89]
 - Optimized database query performance
 
 ## Configuration
@@ -65,7 +65,7 @@ This document outlines the current state of the project as of revision 79.
 ## Key Points
 
 - Updated core module dependencies
-- Improved error handling across services
+- Improved error handling across services [updated rev 89]
 - Enhanced logging and monitoring capabilities
 - Optimized database query performance
 
@@ -73,12 +73,12 @@ This document outlines the current state of the project as of revision 79.
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `max_retries` | 6 | Maximum retry attempts |
-| `timeout` | 56s | Request timeout |
+| `max_retries` | 6 | Maximum retry attempts | [updated rev 89]
+| `timeout` | 56s | Request timeout | [updated rev 89]
 | `batch_size` | 115 | Processing batch size | [updated rev 88]
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
 
 > Last updated for commit #79.
-> See the changelog for detailed version history.
+> See the changelog for detailed version history. [updated rev 89]
