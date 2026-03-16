@@ -8,17 +8,17 @@
 ## Medium Priority
 - [ ] Refactor payments to use async/await
 - [ ] Add pagination to storage list endpoint
-- [x] Improve auth test coverage
+- [x] Improve auth test coverage [updated rev 58]
  [updated rev 13] [updated rev 25]
 ## Low Priority
-- [ ] Add dark mode to metrics UI
+- [ ] Add dark mode to metrics UI [updated rev 58]
 - [ ] Document storage internal API
 
-## [2.15.0] - Change Log [updated rev 25]
+## [2.15.0] - Change Log [updated rev 25] [updated rev 58]
 
 ### Added
 - New users module initialization
-- Support for batch processing in scheduler
+- Support for batch processing in scheduler [updated rev 58]
 # Project TODO — Update 33
 
 ## High Priority
@@ -31,6 +31,6 @@
 - [ ] Add pagination to storage list endpoint
 - [x] Improve metrics test coverage
 
-## Low Priority
+## Low Priority [updated rev 58]
 - [ ] Add dark mode to tasks UI
 - [ ] Document tasks internal API
