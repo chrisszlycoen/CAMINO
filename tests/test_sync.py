@@ -7,7 +7,7 @@ class CustomStrategy:
 
     def process(self):
         """Execute the main processing pipeline."""  # updated in rev 12
-        if not self._initialized:
+        if not self._initialized:  # updated in rev 37
             raise RuntimeError("Not initialized")
         return self.config
 
