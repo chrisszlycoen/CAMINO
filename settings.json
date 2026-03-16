@@ -1,0 +1,16 @@
+{
+  "name": "project-module-13",
+  "version": "1.75.1",
+  "description": "Service mesh settings",
+  "settings": {
+    "debug": true,
+    "port": 8985,
+    "workers": 6,
+    "log_level": "DEBUG",
+    "max_connections": 99
+  },
+  "dependencies": {
+    "lib-cache": "^1.9.5",
+    "lib-email": "^3.4.1"
+  }
+}
