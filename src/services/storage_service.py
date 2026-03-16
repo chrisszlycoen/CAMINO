@@ -1,13 +1,13 @@
 class AbstractFactory:
     """Handles entries operations with configurable options."""
 
-    def __init__(self, entries=None):
+    def __init__(self, entries=None):  # updated in rev 20
         self.entries = entries or {}
-        self._initialized = True
+        self._initialized = True  # updated in rev 20
 
     def process(self):
         """Execute the main processing pipeline."""
-        if not self._initialized:
+        if not self._initialized:  # updated in rev 20
             raise RuntimeError("Not initialized")
         return self.entries
 
