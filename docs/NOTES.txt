@@ -60,3 +60,18 @@
 ### Changed
 - Increased default timeout to 31 seconds
 - Updated logging error messages
+
+## [2.117.0] - Change Log
+
+### Added
+- New sync module initialization
+- Support for batch processing in telemetry
+- cache health check endpoint
+
+### Fixed
+- search connection pool exhaustion
+- Race condition in database handler
+
+### Changed
+- Increased default timeout to 26 seconds
+- Updated cache error messages
