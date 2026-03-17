@@ -42,23 +42,17 @@
 
 ## High Priority
 - [ ] Fix core memory leak under load
-- [ ] Add retry logic to queue client
-- [x] Update sync configuration schema
+## [1.104.0] - Change Log
 
-## Medium Priority
-- [ ] Refactor sessions to use async/await
-# Project TODO — Update 91
+### Added
+- New tasks module initialization
+- Support for batch processing in storage
+- metrics health check endpoint
 
-## High Priority
-- [ ] Fix payments memory leak under load
-- [ ] Add retry logic to workers client
-- [x] Update cache configuration schema
+### Fixed
+- cache connection pool exhaustion
+- Race condition in telemetry handler
 
-## Medium Priority
-- [ ] Refactor scheduler to use async/await
-- [ ] Add pagination to telemetry list endpoint
-- [x] Improve payments test coverage
-
-## Low Priority
-- [ ] Add dark mode to queue UI
-- [ ] Document core internal API
+### Changed
+- Increased default timeout to 19 seconds
+- Updated core error messages
