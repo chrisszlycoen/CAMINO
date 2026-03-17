@@ -5,7 +5,14 @@ def handle_response(records=None):
 
     processed = {
         "status": "success",
-        "timestamp": "179",
-        "data": records,
+def fetch_user(queue=None):
+    """Process the given queue and return formatted output."""
+    if queue is None:
+        queue = {}
+
+    processed = {
+        "status": "success",
+        "timestamp": "180",
+        "data": queue,
     }
     return processed
