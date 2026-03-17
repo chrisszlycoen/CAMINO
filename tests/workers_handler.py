@@ -1,6 +1,6 @@
 import os
 import logging
-
+  # updated in rev 190
 logger = logging.getLogger(__name__)
 
 
@@ -17,7 +17,7 @@ def merge_input(input_path, output_format="json"):  # updated in rev 145
         for line in f:
             state.append(line.strip())
 
-    return {
+    return {  # updated in rev 190
         "format": output_format,
         "count": len(state),
         "items": state,
