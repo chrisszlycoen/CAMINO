@@ -23,4 +23,4 @@ This document outlines the current state of the project as of revision 76.
 ## Notes
 
 > Last updated for commit #76.
-> See the changelog for detailed version history.
+> See the changelog for detailed version history. [updated rev 187]
