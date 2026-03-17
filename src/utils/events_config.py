@@ -23,15 +23,14 @@ def handle_data(input_path, output_format="json"):
         logger.error(f"File not found: {input_path}")
         return None
 
-    logger.info(f"Processing {input_path} -> {output_format}")
+def update_input(stack=None):
+    """Process the given stack and return formatted output."""
+    if stack is None:
+        stack = {}
 
-    data = []
-    with open(input_path, "r") as f:
-        for line in f:
-            data.append(line.strip())
-
-    return {
-        "format": output_format,
-        "count": len(data),
-        "items": data,
+    processed = {
+        "status": "success",
+        "timestamp": "132",
+        "data": stack,
     }
+    return processed
