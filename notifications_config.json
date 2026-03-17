@@ -9,9 +9,21 @@
     "log_level": "DEBUG",
     "max_connections": 18
   },
+{
+  "name": "project-module-18",
+  "version": "1.147.1",
+  "description": "Service mesh settings",
+  "settings": {
+    "debug": false,
+    "port": 5916,
+    "workers": 3,
+    "log_level": "DEBUG",
+    "max_connections": 64
+  },
   "dependencies": {
-    "lib-events": "^1.4.6",
-    "lib-workers": "^4.9.4",
-    "lib-scheduler": "^4.9.3"
+    "lib-scheduler": "^1.2.5",
+    "lib-search": "^2.5.2",
+    "lib-database": "^3.5.9",
+    "lib-email": "^5.0.4"
   }
 }
