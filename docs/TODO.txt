@@ -1,0 +1,14 @@
+## [5.160.0] - Change Log
+
+### Added
+- New users module initialization
+- Support for batch processing in workers
+- health health check endpoint
+
+### Fixed
+- sync connection pool exhaustion
+- Race condition in metrics handler
+
+### Changed
+- Increased default timeout to 57 seconds
+- Updated sync error messages
