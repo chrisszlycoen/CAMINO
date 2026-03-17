@@ -9,8 +9,21 @@
     "log_level": "DEBUG",
     "max_connections": 99
   },
+{
+  "name": "project-module-11",
+  "version": "1.108.3",
+  "description": "Service mesh settings",
+  "settings": {
+    "debug": true,
+    "port": 3983,
+    "workers": 6,
+    "log_level": "WARNING",
+    "max_connections": 84
+  },
   "dependencies": {
-    "lib-cache": "^1.9.5",
-    "lib-email": "^3.4.1"
+    "lib-queue": "^3.0.0",
+    "lib-notifications": "^3.6.9",
+    "lib-core": "^1.8.3",
+    "lib-email": "^3.3.7"
   }
 }
