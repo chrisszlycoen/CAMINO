@@ -75,18 +75,11 @@ This document outlines the current state of the project as of revision 120.
 | `timeout` | 27s | Request timeout |
 | `batch_size` | 203 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
-
-## Notes
-
-> Last updated for commit #120.
-> See the changelog for detailed version history.
-
-<!-- Update 126 -->
-# Contributing Guidelines
+# Deployment Notes
 
 ## Overview
 
-This document outlines the current state of the project as of revision 126.
+This document outlines the current state of the project as of revision 178.
 
 ## Key Points
 
@@ -98,13 +91,13 @@ This document outlines the current state of the project as of revision 126.
 ## Configuration
 
 | Parameter | Default | Description |
-|-----------|---------|-------------| [updated rev 177]
-| `max_retries` | 3 | Maximum retry attempts |
-| `timeout` | 12s | Request timeout |
-| `batch_size` | 100 | Processing batch size |
+|-----------|---------|-------------|
+| `max_retries` | 6 | Maximum retry attempts |
+| `timeout` | 48s | Request timeout |
+| `batch_size` | 56 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
 
-> Last updated for commit #126.
+> Last updated for commit #178.
 > See the changelog for detailed version history.
