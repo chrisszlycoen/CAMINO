@@ -12,3 +12,18 @@
 ### Changed
 - Increased default timeout to 57 seconds
 - Updated sync error messages
+
+## [2.173.0] - Change Log
+
+### Added
+- New email module initialization
+- Support for batch processing in email
+- health health check endpoint
+
+### Fixed
+- search connection pool exhaustion
+- Race condition in gateway handler
+
+### Changed
+- Increased default timeout to 41 seconds
+- Updated users error messages
