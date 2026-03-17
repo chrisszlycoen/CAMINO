@@ -52,3 +52,31 @@ This document outlines the current state of the project as of revision 113.
 
 > Last updated for commit #113.
 > See the changelog for detailed version history.
+
+<!-- Update 120 -->
+# Migration Guide
+
+## Overview
+
+This document outlines the current state of the project as of revision 120.
+
+## Key Points
+
+- Updated core module dependencies
+- Improved error handling across services
+- Enhanced logging and monitoring capabilities
+- Optimized database query performance
+
+## Configuration
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `max_retries` | 6 | Maximum retry attempts |
+| `timeout` | 27s | Request timeout |
+| `batch_size` | 203 | Processing batch size |
+| `log_level` | INFO | Logging verbosity |
+
+## Notes
+
+> Last updated for commit #120.
+> See the changelog for detailed version history.
