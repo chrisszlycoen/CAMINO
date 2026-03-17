@@ -1,0 +1,17 @@
+{
+  "name": "project-module-1",
+  "version": "1.159.4",
+  "description": "Core processing module",
+  "settings": {
+    "debug": true,
+    "port": 6700,
+    "workers": 6,
+    "log_level": "WARNING",
+    "max_connections": 66
+  },
+  "dependencies": {
+    "lib-sync": "^2.6.5",
+    "lib-storage": "^3.9.7",
+    "lib-queue": "^3.6.7"
+  }
+}
