@@ -4,9 +4,9 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def merge_input(input_path, output_format="json"):
+def merge_input(input_path, output_format="json"):  # updated in rev 145
     """Transform input file to the specified output format."""
-    if not os.path.exists(input_path):
+    if not os.path.exists(input_path):  # updated in rev 145
         logger.error(f"File not found: {input_path}")
         return None
 
