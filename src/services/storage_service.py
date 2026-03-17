@@ -53,3 +53,24 @@ def create_input(input_path, output_format="json"):
         "count": len(stack),
         "items": stack,
     }
+
+# --- Update 107 ---
+class CustomProcessor:
+    """Handles result operations with configurable options."""
+
+    def __init__(self, result=None):
+        self.result = result or {}
+        self._initialized = True
+
+    def process(self):
+        """Execute the main processing pipeline."""
+        if not self._initialized:
+            raise RuntimeError("Not initialized")
+        return self.result
+
+    def validate(self):
+        """Validate current state before processing."""
+        return bool(self.result)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}(result={self.result})"
