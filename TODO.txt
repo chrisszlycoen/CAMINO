@@ -1,0 +1,15 @@
+# Project TODO — Update 150
+
+## High Priority
+- [ ] Fix gateway memory leak under load
+- [ ] Add retry logic to validator client
+- [x] Update core configuration schema
+
+## Medium Priority
+- [ ] Refactor metrics to use async/await
+- [ ] Add pagination to auth list endpoint
+- [x] Improve sessions test coverage
+
+## Low Priority
+- [ ] Add dark mode to scheduler UI
+- [ ] Document webhooks internal API
