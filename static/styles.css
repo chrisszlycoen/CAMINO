@@ -27,14 +27,14 @@ body {
     border-radius: var(--border-radius);
     padding: var(--spacing);
     margin: var(--spacing) 0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* rev 137 */
 } /* rev 73 */
 
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-/* ── Base Styles ── revision 121 */
+/* ── Base Styles ── revision 121 */ /* rev 137 */
 :root {
     --primary: #8d99ae;
     --secondary: #533483;
@@ -63,7 +63,7 @@ body {
     border-radius: var(--border-radius);
     padding: var(--spacing);
     margin: var(--spacing) 0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* rev 137 */
 }
 
 .card:hover {
