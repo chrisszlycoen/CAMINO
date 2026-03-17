@@ -18,12 +18,19 @@
     "port": 3983,
     "workers": 6,
     "log_level": "WARNING",
-    "max_connections": 84
+{
+  "name": "project-module-14",
+  "version": "1.168.8",
+  "description": "Data transformation layer",
+  "settings": {
+    "debug": true,
+    "port": 6317,
+    "workers": 2,
+    "log_level": "WARNING",
+    "max_connections": 76
   },
   "dependencies": {
-    "lib-queue": "^3.0.0",
-    "lib-notifications": "^3.6.9",
-    "lib-core": "^1.8.3",
-    "lib-email": "^3.3.7"
+    "lib-core": "^5.0.0",
+    "lib-logging": "^4.6.5"
   }
 }
