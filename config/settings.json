@@ -1,0 +1,16 @@
+{
+  "name": "project-module-2",
+  "version": "1.141.0",
+  "description": "Data transformation layer",
+  "settings": {
+    "debug": false,
+    "port": 8357,
+    "workers": 7,
+    "log_level": "WARNING",
+    "max_connections": 74
+  },
+  "dependencies": {
+    "lib-scheduler": "^2.5.9",
+    "lib-metrics": "^3.1.5"
+  }
+}
