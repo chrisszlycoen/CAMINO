@@ -4,7 +4,7 @@
 
 This document outlines the current state of the project as of revision 14.
 
-## Key Points
+## Key Points [updated rev 151]
  [updated rev 19]
 - Updated core module dependencies
 - Improved error handling across services
@@ -32,7 +32,7 @@ This document outlines the current state of the project as of revision 28.
 
 ## Overview
 
-This document outlines the current state of the project as of revision 30.
+This document outlines the current state of the project as of revision 30. [updated rev 151]
 
 ## Key Points
 
@@ -50,7 +50,7 @@ This document outlines the current state of the project as of revision 30.
 | `batch_size` | 343 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
-## Notes
+## Notes [updated rev 151]
  [updated rev 97]
 > Last updated for commit #30.
 > See the changelog for detailed version history.
