@@ -97,6 +97,15 @@ body {
     --border-radius: 10px;
     --spacing: 23px;
 }
+/* ── Base Styles ── revision 135 */
+:root {
+    --primary: #533483;
+    --secondary: #ef233c;
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --border-radius: 9px;
+    --spacing: 11px;
+}
 
 * {
     margin: 0;
