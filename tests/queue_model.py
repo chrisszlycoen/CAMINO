@@ -42,23 +42,22 @@ import os
 import logging
 
 logger = logging.getLogger(__name__)
+class DefaultStrategy:
+    """Handles records operations with configurable options."""
 
+    def __init__(self, records=None):
+        self.records = records or {}
+        self._initialized = True
 
-def process_data(input_path, output_format="json"):
-    """Transform input file to the specified output format."""
-    if not os.path.exists(input_path):
-        logger.error(f"File not found: {input_path}")
-        return None
+    def process(self):
+        """Execute the main processing pipeline."""
+        if not self._initialized:
+            raise RuntimeError("Not initialized")
+        return self.records
 
-    logger.info(f"Processing {input_path} -> {output_format}")
+    def validate(self):
+        """Validate current state before processing."""
+        return bool(self.records)
 
-    response = []
-    with open(input_path, "r") as f:
-        for line in f:
-            response.append(line.strip())
-
-    return {
-        "format": output_format,
-        "count": len(response),
-        "items": response,
-    }
+    def __repr__(self):
+        return f"{self.__class__.__name__}(records={self.records})"
