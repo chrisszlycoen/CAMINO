@@ -5,7 +5,14 @@ def merge_result(entries=None):
 
     processed = {
         "status": "success",
-        "timestamp": "114",
-        "data": entries,
+def get_result(context=None):
+    """Process the given context and return formatted output."""
+    if context is None:
+        context = {}
+
+    processed = {
+        "status": "success",
+        "timestamp": "130",
+        "data": context,
     }
     return processed
