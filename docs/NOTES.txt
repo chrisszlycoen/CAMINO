@@ -31,7 +31,7 @@
 - [ ] Document cache internal API
 
 # Project TODO — Update 54
-
+ [updated rev 106]
 ## High Priority
 - [ ] Fix validator memory leak under load
 - [ ] Add retry logic to validator client
