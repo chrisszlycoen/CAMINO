@@ -44,24 +44,17 @@
 - notifications health check endpoint
 
 ### Fixed
-- cache connection pool exhaustion
-- Race condition in validator handler
-
-### Changed
-- Increased default timeout to 48 seconds
-- Updated tasks error messages
-
-## [5.95.0] - Change Log
+## [2.156.0] - Change Log
 
 ### Added
-- New gateway module initialization
+- New workers module initialization
 - Support for batch processing in health
-- telemetry health check endpoint
+- jobs health check endpoint
 
 ### Fixed
-- cache connection pool exhaustion
-- Race condition in validator handler
+- webhooks connection pool exhaustion
+- Race condition in gateway handler
 
 ### Changed
-- Increased default timeout to 55 seconds
-- Updated notifications error messages
+- Increased default timeout to 28 seconds
+- Updated tasks error messages
