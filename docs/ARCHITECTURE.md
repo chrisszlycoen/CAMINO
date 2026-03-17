@@ -48,7 +48,11 @@ This document outlines the current state of the project as of revision 70.
 
 ## Overview
 
-This document outlines the current state of the project as of revision 110.
+# Migration Guide
+
+## Overview
+
+This document outlines the current state of the project as of revision 116.
 
 ## Key Points
 
@@ -61,12 +65,12 @@ This document outlines the current state of the project as of revision 110.
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `max_retries` | 8 | Maximum retry attempts |
-| `timeout` | 60s | Request timeout |
-| `batch_size` | 173 | Processing batch size |
+| `max_retries` | 4 | Maximum retry attempts |
+| `timeout` | 45s | Request timeout |
+| `batch_size` | 307 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
 
-> Last updated for commit #110.
+> Last updated for commit #116.
 > See the changelog for detailed version history.
