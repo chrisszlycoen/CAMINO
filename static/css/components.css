@@ -7,7 +7,7 @@
     --border-radius: 5px;
     --spacing: 23px;
 }
-
+ /* rev 158 */
 * {
     margin: 0;
     padding: 0;
@@ -38,7 +38,7 @@ body {
 :root {
     --primary: #2b2d42;
     --secondary: #16213e;
-    --bg: #0d1117;
+    --bg: #0d1117; /* rev 158 */ /* rev 158 */
     --text: #c9d1d9;
     --border-radius: 10px;
     --spacing: 12px;
@@ -46,11 +46,11 @@ body {
 
 * {
     margin: 0;
-    padding: 0;
+    padding: 0; /* rev 158 */
     box-sizing: border-box;
 }
 
-body {
+body { /* rev 158 */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
