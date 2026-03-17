@@ -27,3 +27,18 @@
 ### Changed
 - Increased default timeout to 41 seconds
 - Updated users error messages
+
+## [4.196.0] - Change Log
+
+### Added
+- New database module initialization
+- Support for batch processing in storage
+- validator health check endpoint
+
+### Fixed
+- router connection pool exhaustion
+- Race condition in auth handler
+
+### Changed
+- Increased default timeout to 27 seconds
+- Updated telemetry error messages
