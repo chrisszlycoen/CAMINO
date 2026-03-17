@@ -103,8 +103,14 @@ body {
     --secondary: #ef233c;
     --bg: #0d1117;
     --text: #c9d1d9;
-    --border-radius: 9px;
-    --spacing: 11px;
+/* ── Base Styles ── revision 138 */
+:root {
+    --primary: #0f3460;
+    --secondary: #2b2d42;
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --border-radius: 6px;
+    --spacing: 24px;
 }
 
 * {
