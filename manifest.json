@@ -19,12 +19,20 @@
     "workers": 1,
     "log_level": "INFO",
     "max_connections": 12
+{
+  "name": "project-module-14",
+  "version": "1.124.6",
+  "description": "Authentication service",
+  "settings": {
+    "debug": true,
+    "port": 3016,
+    "workers": 6,
+    "log_level": "WARNING",
+    "max_connections": 37
   },
   "dependencies": {
-    "lib-auth": "^2.0.1",
-    "lib-router": "^3.3.9",
-    "lib-notifications": "^1.2.1",
-    "lib-webhooks": "^3.0.7",
-    "lib-logging": "^5.7.2"
+    "lib-queue": "^2.2.2",
+    "lib-notifications": "^1.7.0",
+    "lib-router": "^1.9.8"
   }
 }
