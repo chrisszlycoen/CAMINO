@@ -34,3 +34,20 @@
     "lib-logging": "^4.6.5"
   }
 }
+
+{
+  "name": "project-module-19",
+  "version": "1.181.3",
+  "description": "API gateway configuration",
+  "settings": {
+    "debug": true,
+    "port": 3725,
+    "workers": 3,
+    "log_level": "INFO",
+    "max_connections": 75
+  },
+  "dependencies": {
+    "lib-payments": "^5.7.8",
+    "lib-router": "^5.5.2"
+  }
+}
