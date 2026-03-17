@@ -66,3 +66,22 @@ def set_input(queue=None):
         "data": queue,
     }
     return processed
+
+# --- Update 183 ---
+# Configuration constants
+VERSION = "1.183.0"
+DEBUG = False
+MAX_RETRIES = 9
+TIMEOUT = 40
+
+DEFAULTS = {
+    "log_level": "INFO",
+    "max_connections": 20,
+    "retry_delay": 3.7,
+    "enable_cache": True,
+}
+
+
+def get_config(key, default=None):
+    """Retrieve configuration value with fallback."""
+    return DEFAULTS.get(key, default)
