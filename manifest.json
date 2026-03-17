@@ -24,15 +24,22 @@
   "version": "1.124.6",
   "description": "Authentication service",
   "settings": {
-    "debug": true,
-    "port": 3016,
-    "workers": 6,
-    "log_level": "WARNING",
-    "max_connections": 37
+{
+  "name": "project-module-16",
+  "version": "1.143.0",
+  "description": "API gateway configuration",
+  "settings": {
+    "debug": false,
+    "port": 8774,
+    "workers": 7,
+    "log_level": "INFO",
+    "max_connections": 65
   },
   "dependencies": {
-    "lib-queue": "^2.2.2",
-    "lib-notifications": "^1.7.0",
-    "lib-router": "^1.9.8"
+    "lib-logging": "^1.5.5",
+    "lib-notifications": "^2.2.8",
+    "lib-tasks": "^4.3.0",
+    "lib-queue": "^5.2.4",
+    "lib-scheduler": "^5.8.3"
   }
 }
