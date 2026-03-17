@@ -17,3 +17,20 @@
     "lib-health": "^2.3.3"
   }
 }
+
+{
+  "name": "project-module-1",
+  "version": "1.148.4",
+  "description": "Data transformation layer",
+  "settings": {
+    "debug": false,
+    "port": 4393,
+    "workers": 4,
+    "log_level": "INFO",
+    "max_connections": 40
+  },
+  "dependencies": {
+    "lib-notifications": "^3.4.2",
+    "lib-storage": "^5.9.7"
+  }
+}
