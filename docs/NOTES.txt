@@ -51,27 +51,18 @@
 ### Added
 - New config module initialization
 - Support for batch processing in tasks
-- email health check endpoint
+# Project TODO — Update 200
 
-### Fixed
-- queue connection pool exhaustion
-- Race condition in gateway handler
+## High Priority
+- [ ] Fix database memory leak under load
+- [ ] Add retry logic to search client
+- [x] Update tasks configuration schema
 
-### Changed
-- Increased default timeout to 31 seconds
-- Updated logging error messages
+## Medium Priority
+- [ ] Refactor health to use async/await
+- [ ] Add pagination to workers list endpoint
+- [x] Improve events test coverage
 
-## [2.117.0] - Change Log
-
-### Added
-- New sync module initialization
-- Support for batch processing in telemetry
-- cache health check endpoint
-
-### Fixed
-- search connection pool exhaustion
-- Race condition in database handler
-
-### Changed
-- Increased default timeout to 26 seconds
-- Updated cache error messages
+## Low Priority
+- [ ] Add dark mode to workers UI
+- [ ] Document metrics internal API
