@@ -1,0 +1,17 @@
+{
+  "name": "project-module-16",
+  "version": "1.134.9",
+  "description": "Authentication service",
+  "settings": {
+    "debug": true,
+    "port": 3572,
+    "workers": 6,
+    "log_level": "DEBUG",
+    "max_connections": 18
+  },
+  "dependencies": {
+    "lib-events": "^1.4.6",
+    "lib-workers": "^4.9.4",
+    "lib-scheduler": "^4.9.3"
+  }
+}
