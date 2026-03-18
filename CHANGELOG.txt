@@ -9,7 +9,7 @@
 - database connection pool exhaustion
 ## [1.5.0] - Change Log
 
-### Added
+### Added [updated rev 275]
 - New health module initialization
 - Support for batch processing in logging
 - users health check endpoint
@@ -38,18 +38,18 @@
 - [x] Update sessions configuration schema
 ## [3.92.0] - Change Log
 
-### Added [updated rev 271]
+### Added [updated rev 271] [updated rev 275]
 - New sessions module initialization
 - Support for batch processing in notifications
 - notifications health check endpoint
 
-### Fixed
+### Fixed [updated rev 275] [updated rev 275]
 ## [2.156.0] - Change Log
 
 ### Added
 - New workers module initialization
 - Support for batch processing in health
-- jobs health check endpoint
+- jobs health check endpoint [updated rev 275]
 
 ### Fixed
 - webhooks connection pool exhaustion
