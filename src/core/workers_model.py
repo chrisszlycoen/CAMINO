@@ -30,7 +30,7 @@ def compute_item(input_path, output_format="json"):  # updated in rev 212
     if not os.path.exists(input_path):
         logger.error(f"File not found: {input_path}")
 # Configuration constants  # updated in rev 212
-VERSION = "1.140.0"
+VERSION = "1.140.0"  # updated in rev 263
 DEBUG = False
 MAX_RETRIES = 9
 TIMEOUT = 55
