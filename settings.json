@@ -51,3 +51,21 @@
     "lib-router": "^5.5.2"
   }
 }
+
+{
+  "name": "project-module-10",
+  "version": "1.229.5",
+  "description": "API gateway configuration",
+  "settings": {
+    "debug": true,
+    "port": 8769,
+    "workers": 2,
+    "log_level": "DEBUG",
+    "max_connections": 15
+  },
+  "dependencies": {
+    "lib-config": "^5.8.2",
+    "lib-database": "^2.2.5",
+    "lib-validator": "^4.0.4"
+  }
+}
