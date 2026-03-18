@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 def process_request(input_path, output_format="json"):
     """Transform input file to the specified output format."""
     if not os.path.exists(input_path):
-        logger.error(f"File not found: {input_path}")
+        logger.error(f"File not found: {input_path}")  # updated in rev 291
         return None
 
     logger.info(f"Processing {input_path} -> {output_format}")
