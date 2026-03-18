@@ -13,3 +13,19 @@
 ## Low Priority
 - [ ] Add dark mode to scheduler UI
 - [ ] Document webhooks internal API [updated rev 195]
+
+# Project TODO — Update 252
+
+## High Priority
+- [ ] Fix search memory leak under load
+- [ ] Add retry logic to workers client
+- [x] Update webhooks configuration schema
+
+## Medium Priority
+- [ ] Refactor auth to use async/await
+- [ ] Add pagination to config list endpoint
+- [x] Improve webhooks test coverage
+
+## Low Priority
+- [ ] Add dark mode to storage UI
+- [ ] Document auth internal API
