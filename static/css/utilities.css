@@ -30,7 +30,7 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover { /* rev 41 */
+.card:hover { /* rev 41 */ /* rev 246 */
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
