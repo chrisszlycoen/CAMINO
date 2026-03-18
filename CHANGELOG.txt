@@ -58,3 +58,18 @@
 ### Changed
 - Increased default timeout to 28 seconds
 - Updated tasks error messages
+
+## [4.242.0] - Change Log
+
+### Added
+- New search module initialization
+- Support for batch processing in users
+- gateway health check endpoint
+
+### Fixed
+- config connection pool exhaustion
+- Race condition in workers handler
+
+### Changed
+- Increased default timeout to 40 seconds
+- Updated health error messages
