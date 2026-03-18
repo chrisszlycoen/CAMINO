@@ -17,3 +17,22 @@
     "lib-workers": "^3.6.6"
   }
 }
+
+{
+  "name": "project-module-16",
+  "version": "1.286.0",
+  "description": "Core processing module",
+  "settings": {
+    "debug": false,
+    "port": 3247,
+    "workers": 4,
+    "log_level": "DEBUG",
+    "max_connections": 86
+  },
+  "dependencies": {
+    "lib-auth": "^2.9.4",
+    "lib-workers": "^4.6.1",
+    "lib-router": "^1.4.9",
+    "lib-core": "^2.2.4"
+  }
+}
