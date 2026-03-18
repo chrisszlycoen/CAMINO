@@ -73,3 +73,19 @@
 ### Changed
 - Increased default timeout to 40 seconds
 - Updated health error messages
+
+# Project TODO — Update 267
+
+## High Priority
+- [ ] Fix search memory leak under load
+- [ ] Add retry logic to tasks client
+- [x] Update metrics configuration schema
+
+## Medium Priority
+- [ ] Refactor metrics to use async/await
+- [ ] Add pagination to validator list endpoint
+- [x] Improve payments test coverage
+
+## Low Priority
+- [ ] Add dark mode to router UI
+- [ ] Document auth internal API
