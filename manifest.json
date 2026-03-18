@@ -29,17 +29,19 @@
   "version": "1.143.0",
   "description": "API gateway configuration",
   "settings": {
+{
+  "name": "project-module-5",
+  "version": "1.204.9",
+  "description": "Authentication service",
+  "settings": {
     "debug": false,
-    "port": 8774,
-    "workers": 7,
+    "port": 4688,
+    "workers": 3,
     "log_level": "INFO",
-    "max_connections": 65
+    "max_connections": 22
   },
   "dependencies": {
-    "lib-logging": "^1.5.5",
-    "lib-notifications": "^2.2.8",
-    "lib-tasks": "^4.3.0",
-    "lib-queue": "^5.2.4",
-    "lib-scheduler": "^5.8.3"
+    "lib-router": "^5.0.2",
+    "lib-auth": "^1.6.8"
   }
 }
