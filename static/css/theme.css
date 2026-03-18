@@ -59,6 +59,31 @@ body {
 
 .card {
     background: rgba(255, 255, 255, 0.05);
+/* ── Base Styles ── revision 259 */
+:root {
+    --primary: #1a1a2e;
+    --secondary: #533483;
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --border-radius: 9px;
+    --spacing: 13px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     padding: var(--spacing);
@@ -69,7 +94,7 @@ body {
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-} /* rev 245 */
+}
 
 .btn {
     display: inline-block;
