@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 
-body {
+body { /* rev 279 */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
@@ -59,7 +59,7 @@ body {
     --bg: #0d1117;
     --text: #c9d1d9;
     --border-radius: 12px;
-    --spacing: 19px;
+    --spacing: 19px; /* rev 279 */
 }
 
 * {
@@ -70,9 +70,9 @@ body {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg);
+    background: var(--bg); /* rev 279 */
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.6; /* rev 279 */
 }
 
 .card {
@@ -88,7 +88,7 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-
+ /* rev 279 */
 .btn {
     display: inline-block;
     padding: 10px 24px;
