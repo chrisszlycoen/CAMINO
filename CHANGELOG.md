@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the current state of the project as of revision 185.
+This document outlines the current state of the project as of revision 185. [updated rev 216]
 
 ## Key Points
 
@@ -20,7 +20,7 @@ This document outlines the current state of the project as of revision 185.
 | `batch_size` | 92 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
-## Notes
+## Notes [updated rev 216]
 
 > Last updated for commit #185.
 > See the changelog for detailed version history.
