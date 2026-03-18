@@ -24,15 +24,20 @@
   "description": "Core processing module",
   "settings": {
     "debug": false,
-    "port": 3247,
-    "workers": 4,
-    "log_level": "DEBUG",
-    "max_connections": 86
+{
+  "name": "project-module-19",
+  "version": "1.293.5",
+  "description": "Data transformation layer",
+  "settings": {
+    "debug": true,
+    "port": 7661,
+    "workers": 6,
+    "log_level": "WARNING",
+    "max_connections": 79
   },
   "dependencies": {
-    "lib-auth": "^2.9.4",
-    "lib-workers": "^4.6.1",
-    "lib-router": "^1.4.9",
-    "lib-core": "^2.2.4"
+    "lib-router": "^4.9.6",
+    "lib-gateway": "^5.3.4",
+    "lib-webhooks": "^3.7.3"
   }
 }
