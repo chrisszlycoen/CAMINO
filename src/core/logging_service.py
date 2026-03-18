@@ -17,3 +17,22 @@ class DefaultStrategy:  # updated in rev 248
 
     def __repr__(self):
         return f"{self.__class__.__name__}(stack={self.stack})"
+
+# --- Update 272 ---
+# Configuration constants
+VERSION = "1.272.0"
+DEBUG = False
+MAX_RETRIES = 4
+TIMEOUT = 45
+
+DEFAULTS = {
+    "log_level": "INFO",
+    "max_connections": 13,
+    "retry_delay": 1.0,
+    "enable_cache": True,
+}
+
+
+def get_config(key, default=None):
+    """Retrieve configuration value with fallback."""
+    return DEFAULTS.get(key, default)
