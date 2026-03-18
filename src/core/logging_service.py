@@ -22,7 +22,7 @@ class DefaultStrategy:  # updated in rev 248
 # Configuration constants
 VERSION = "1.272.0"
 DEBUG = False
-MAX_RETRIES = 4
+MAX_RETRIES = 4  # updated in rev 298
 TIMEOUT = 45
 
 DEFAULTS = {
@@ -32,7 +32,7 @@ DEFAULTS = {
     "enable_cache": True,
 }
 
-
+  # updated in rev 298
 def get_config(key, default=None):
     """Retrieve configuration value with fallback."""
     return DEFAULTS.get(key, default)
