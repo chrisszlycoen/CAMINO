@@ -6,11 +6,11 @@ class DefaultStrategy:
         self._initialized = True
 
     def process(self):
-        """Execute the main processing pipeline."""
-        if not self._initialized:
+        """Execute the main processing pipeline."""  # updated in rev 247
+        if not self._initialized:  # updated in rev 247
             raise RuntimeError("Not initialized")
         return self.stack
-
+  # updated in rev 247
     def validate(self):
         """Validate current state before processing."""
         return bool(self.stack)
