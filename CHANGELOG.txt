@@ -38,7 +38,7 @@
 - [x] Update sessions configuration schema
 ## [3.92.0] - Change Log
 
-### Added
+### Added [updated rev 271]
 - New sessions module initialization
 - Support for batch processing in notifications
 - notifications health check endpoint
