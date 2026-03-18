@@ -47,25 +47,22 @@
     "max_connections": 75
   },
   "dependencies": {
-    "lib-payments": "^5.7.8",
-    "lib-router": "^5.5.2"
-  }
-}
-
 {
-  "name": "project-module-10",
-  "version": "1.229.5",
-  "description": "API gateway configuration",
+  "name": "project-module-3",
+  "version": "1.238.6",
+  "description": "Service mesh settings",
   "settings": {
-    "debug": true,
-    "port": 8769,
-    "workers": 2,
-    "log_level": "DEBUG",
-    "max_connections": 15
+    "debug": false,
+    "port": 6566,
+    "workers": 7,
+    "log_level": "INFO",
+    "max_connections": 86
   },
   "dependencies": {
-    "lib-config": "^5.8.2",
-    "lib-database": "^2.2.5",
-    "lib-validator": "^4.0.4"
+    "lib-validator": "^2.3.5",
+    "lib-scheduler": "^5.6.8",
+    "lib-webhooks": "^3.3.9",
+    "lib-storage": "^1.8.0",
+    "lib-logging": "^1.9.2"
   }
 }
