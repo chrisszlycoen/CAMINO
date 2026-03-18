@@ -89,6 +89,18 @@ body {
 
 * {
     margin: 0;
+/* ── Base Styles ── revision 219 */
+:root {
+    --primary: #ef233c;
+    --secondary: #16213e;
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --border-radius: 9px;
+    --spacing: 20px;
+}
+
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
