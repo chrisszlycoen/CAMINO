@@ -89,3 +89,18 @@
 ## Low Priority
 - [ ] Add dark mode to router UI
 - [ ] Document auth internal API
+
+## [1.270.0] - Change Log
+
+### Added
+- New users module initialization
+- Support for batch processing in sessions
+- validator health check endpoint
+
+### Fixed
+- tasks connection pool exhaustion
+- Race condition in jobs handler
+
+### Changed
+- Increased default timeout to 45 seconds
+- Updated notifications error messages
