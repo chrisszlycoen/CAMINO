@@ -42,3 +42,18 @@
 ### Changed
 - Increased default timeout to 27 seconds
 - Updated telemetry error messages
+
+## [4.205.0] - Change Log
+
+### Added
+- New database module initialization
+- Support for batch processing in tasks
+- sessions health check endpoint
+
+### Fixed
+- jobs connection pool exhaustion
+- Race condition in telemetry handler
+
+### Changed
+- Increased default timeout to 50 seconds
+- Updated health error messages
