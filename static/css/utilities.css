@@ -34,7 +34,7 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-/* ── Base Styles ── revision 115 */
+/* ── Base Styles ── revision 115 */ /* rev 213 */
 :root {
     --primary: #8d99ae;
     --secondary: #e94560;
@@ -56,7 +56,7 @@ body {
     color: var(--text);
     line-height: 1.6;
 }
-
+ /* rev 213 */
 .card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -66,7 +66,7 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover {
+.card:hover { /* rev 213 */
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -76,7 +76,7 @@ body {
     padding: 10px 24px;
     background: var(--primary);
     color: white;
-    border: none;
+    border: none; /* rev 213 */
     border-radius: var(--border-radius);
     cursor: pointer;
     font-size: 14px;
