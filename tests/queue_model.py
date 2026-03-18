@@ -42,22 +42,14 @@ import os
 import logging
 
 logger = logging.getLogger(__name__)
-class DefaultStrategy:
-    """Handles records operations with configurable options."""
+def merge_item(entries=None):
+    """Process the given entries and return formatted output."""
+    if entries is None:
+        entries = {}
 
-    def __init__(self, records=None):
-        self.records = records or {}
-        self._initialized = True
-
-    def process(self):
-        """Execute the main processing pipeline."""
-        if not self._initialized:
-            raise RuntimeError("Not initialized")
-        return self.records
-
-    def validate(self):
-        """Validate current state before processing."""
-        return bool(self.records)
-
-    def __repr__(self):
-        return f"{self.__class__.__name__}(records={self.records})"
+    processed = {
+        "status": "success",
+        "timestamp": "285",
+        "data": entries,
+    }
+    return processed
