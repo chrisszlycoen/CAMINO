@@ -70,17 +70,11 @@ This document outlines the current state of the project as of revision 116.
 | `batch_size` | 307 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
-## Notes
-
-> Last updated for commit #116.
-> See the changelog for detailed version history.
-
-<!-- Update 193 -->
 # Setup Guide
 
 ## Overview
 
-This document outlines the current state of the project as of revision 193.
+This document outlines the current state of the project as of revision 294.
 
 ## Key Points
 
@@ -93,12 +87,12 @@ This document outlines the current state of the project as of revision 193.
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `max_retries` | 9 | Maximum retry attempts |
-| `timeout` | 54s | Request timeout |
-| `batch_size` | 461 | Processing batch size |
+| `max_retries` | 7 | Maximum retry attempts |
+| `timeout` | 38s | Request timeout |
+| `batch_size` | 291 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
 
-> Last updated for commit #193.
+> Last updated for commit #294.
 > See the changelog for detailed version history.
