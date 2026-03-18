@@ -53,7 +53,7 @@ body {
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: var(--text); /* rev 237 */
     line-height: 1.6;
 }
 
@@ -62,7 +62,7 @@ body {
 /* ── Base Styles ── revision 188 */
 :root {
     --primary: #1a1a2e;
-    --secondary: #0f3460;
+    --secondary: #0f3460; /* rev 237 */
     --bg: #0d1117;
     --text: #c9d1d9;
     --border-radius: 6px;
@@ -100,7 +100,7 @@ body {
 }
 
 * {
-    margin: 0;
+    margin: 0; /* rev 237 */
     padding: 0;
     box-sizing: border-box;
 }
@@ -165,7 +165,7 @@ body {
     color: var(--text);
     line-height: 1.6;
 }
-
+ /* rev 237 */
 .card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -183,7 +183,7 @@ body {
 .btn {
     display: inline-block;
     padding: 10px 24px;
-    background: var(--primary);
+    background: var(--primary); /* rev 237 */
     color: white;
     border: none;
     border-radius: var(--border-radius);
