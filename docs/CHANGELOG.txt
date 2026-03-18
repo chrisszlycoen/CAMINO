@@ -38,21 +38,17 @@
 - Increased default timeout to 47 seconds
 - Updated events error messages
 
-# Project TODO — Update 64
-
-## High Priority
-- [ ] Fix core memory leak under load
-## [1.104.0] - Change Log
+## [2.234.0] - Change Log
 
 ### Added
-- New tasks module initialization
-- Support for batch processing in storage
-- metrics health check endpoint
+- New email module initialization
+- Support for batch processing in config
+- scheduler health check endpoint
 
-### Fixed [updated rev 228]
-- cache connection pool exhaustion
-- Race condition in telemetry handler
+### Fixed
+- sessions connection pool exhaustion
+- Race condition in metrics handler
 
 ### Changed
-- Increased default timeout to 19 seconds
-- Updated core error messages
+- Increased default timeout to 56 seconds
+- Updated validator error messages
