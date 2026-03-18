@@ -96,3 +96,31 @@ This document outlines the current state of the project as of revision 294.
 
 > Last updated for commit #294.
 > See the changelog for detailed version history.
+
+<!-- Update 296 -->
+# Contributing Guidelines
+
+## Overview
+
+This document outlines the current state of the project as of revision 296.
+
+## Key Points
+
+- Updated core module dependencies
+- Improved error handling across services
+- Enhanced logging and monitoring capabilities
+- Optimized database query performance
+
+## Configuration
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `max_retries` | 8 | Maximum retry attempts |
+| `timeout` | 39s | Request timeout |
+| `batch_size` | 84 | Processing batch size |
+| `log_level` | INFO | Logging verbosity |
+
+## Notes
+
+> Last updated for commit #296.
+> See the changelog for detailed version history.
