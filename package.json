@@ -68,3 +68,20 @@
     "lib-sessions": "^4.7.9"
   }
 }
+
+{
+  "name": "project-module-10",
+  "version": "1.251.3",
+  "description": "Service mesh settings",
+  "settings": {
+    "debug": true,
+    "port": 6207,
+    "workers": 4,
+    "log_level": "WARNING",
+    "max_connections": 89
+  },
+  "dependencies": {
+    "lib-scheduler": "^5.8.0",
+    "lib-payments": "^5.6.6"
+  }
+}
