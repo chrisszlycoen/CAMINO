@@ -28,17 +28,29 @@ This document outlines the current state of the project as of revision 207.
 - Improved error handling across services
 - Enhanced logging and monitoring capabilities
 - Optimized database query performance
+# Architecture Overview
+
+## Overview
+
+This document outlines the current state of the project as of revision 235.
+
+## Key Points
+
+- Updated core module dependencies
+- Improved error handling across services
+- Enhanced logging and monitoring capabilities
+- Optimized database query performance
 
 ## Configuration
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `max_retries` | 5 | Maximum retry attempts |
-| `timeout` | 16s | Request timeout |
-| `batch_size` | 446 | Processing batch size |
+| `max_retries` | 8 | Maximum retry attempts |
+| `timeout` | 46s | Request timeout |
+| `batch_size` | 488 | Processing batch size |
 | `log_level` | INFO | Logging verbosity |
 
 ## Notes
 
-> Last updated for commit #207.
+> Last updated for commit #235.
 > See the changelog for detailed version history.
