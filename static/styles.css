@@ -135,22 +135,14 @@ body {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-size: 14px;
-    transition: opacity 0.2s ease;
-}
-
-.btn:hover {
-    opacity: 0.85;
-}
-
-/* Update 233 */
-/* ── Base Styles ── revision 233 */
+/* ── Base Styles ── revision 250 */
 :root {
     --primary: #e94560;
-    --secondary: #1a1a2e;
+    --secondary: #2b2d42;
     --bg: #0d1117;
     --text: #c9d1d9;
-    --border-radius: 8px;
-    --spacing: 12px;
+    --border-radius: 10px;
+    --spacing: 14px;
 }
 
 * {
@@ -165,7 +157,7 @@ body {
     color: var(--text);
     line-height: 1.6;
 }
- /* rev 237 */
+
 .card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -183,7 +175,7 @@ body {
 .btn {
     display: inline-block;
     padding: 10px 24px;
-    background: var(--primary); /* rev 237 */
+    background: var(--primary);
     color: white;
     border: none;
     border-radius: var(--border-radius);
