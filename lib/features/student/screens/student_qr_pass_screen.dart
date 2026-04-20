@@ -32,7 +32,7 @@ class StudentQRPassScreen extends StatelessWidget {
                   borderRadius: AppSpacing.borderRadiusLg,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primary.withOpacity(0.2),
+                      color: AppColors.primary.withValues(alpha: 0.2),
                       blurRadius: 30,
                       spreadRadius: -5,
                     ),

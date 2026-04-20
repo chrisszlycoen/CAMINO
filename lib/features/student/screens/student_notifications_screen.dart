@@ -109,15 +109,15 @@ class _NotificationTile extends StatelessWidget {
                       child: Text(
                         title,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: isNew ? FontWeight.bold : FontWeight.w600,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                     Text(
                       time,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isNew ? color : textColor,
-                        fontWeight: isNew ? FontWeight.bold : FontWeight.normal,
+                        color: textColor,
+                        fontWeight: FontWeight.normal,
                       ),
                     ),
                   ],

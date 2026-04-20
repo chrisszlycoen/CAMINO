@@ -23,7 +23,7 @@ class StaffRouteScreen extends StatelessWidget {
         children: [
           // Full screen map placeholder
           const Positioned.fill(
-            child: const MockMapBackground(),
+            child: MockMapBackground(),
           ),
           
           // Timeline Overlay

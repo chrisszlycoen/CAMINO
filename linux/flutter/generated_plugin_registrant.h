@@ -13,4 +13,3 @@
 void fl_register_plugins(FlPluginRegistry* registry);
 
 #endif  // GENERATED_PLUGIN_REGISTRANT_
-

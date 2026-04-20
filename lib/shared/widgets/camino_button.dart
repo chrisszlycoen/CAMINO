@@ -5,6 +5,8 @@ import '../../core/theme/app_spacing.dart';
 enum CaminoButtonType { primary, secondary, outline, text }
 
 class CaminoButton extends StatelessWidget {
+  static const double height = 56;
+
   final String label;
   final VoidCallback? onPressed;
   final CaminoButtonType type;
@@ -27,6 +29,22 @@ class CaminoButton extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
+    final Color primaryColor = isDark ? AppColors.primaryLight : AppColors.primary;
+    final Color borderColor = isDark ? AppColors.borderDark : AppColors.borderLight;
+    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final Color surfaceElevated = isDark ? AppColors.surfaceDarkElevated : AppColors.surfaceLightElevated;
+
+    final TextStyle labelStyle = theme.textTheme.labelLarge?.copyWith(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ) ??
+        const TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+
+    final EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(
+      horizontal: AppSpacing.lg,
+      vertical: AppSpacing.md,
+    );
+
     Widget buttonContent = Row(
       mainAxisSize: isFullWidth ? MainAxisSize.max : MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,9 +54,16 @@ class CaminoButton extends StatelessWidget {
             width: 20,
             height: 20,
             margin: const EdgeInsets.only(right: AppSpacing.sm),
-            child: const CircularProgressIndicator(
+            child: CircularProgressIndicator(
               strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                switch (type) {
+                  CaminoButtonType.secondary => textPrimary,
+                  CaminoButtonType.outline => primaryColor,
+                  CaminoButtonType.text => primaryColor,
+                  CaminoButtonType.primary => Colors.white,
+                },
+              ),
             ),
           )
         else if (icon != null)
@@ -46,7 +71,7 @@ class CaminoButton extends StatelessWidget {
             padding: const EdgeInsets.only(right: AppSpacing.sm),
             child: Icon(icon, size: 20),
           ),
-        Text(label),
+        Text(label, style: labelStyle),
       ],
     );
 
@@ -56,7 +81,11 @@ class CaminoButton extends StatelessWidget {
         button = ElevatedButton(
           onPressed: isLoading ? null : onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: isDark ? AppColors.primaryLight : AppColors.primary,
+            minimumSize: const Size.fromHeight(height),
+            padding: contentPadding,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            textStyle: labelStyle,
+            backgroundColor: primaryColor,
             foregroundColor: Colors.white,
             elevation: 0,
             shadowColor: Colors.transparent,
@@ -69,14 +98,18 @@ class CaminoButton extends StatelessWidget {
         button = ElevatedButton(
           onPressed: isLoading ? null : onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: isDark ? AppColors.surfaceDarkElevated : AppColors.surfaceLightElevated,
-            foregroundColor: isDark ? Colors.white : AppColors.textPrimaryLight,
+            minimumSize: const Size.fromHeight(height),
+            padding: contentPadding,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            textStyle: labelStyle,
+            backgroundColor: surfaceElevated,
+            foregroundColor: textPrimary,
             elevation: 0,
             shadowColor: Colors.transparent,
             splashFactory: NoSplash.splashFactory,
             side: BorderSide(
-              color: isDark ? AppColors.borderDark : AppColors.borderLight, 
-              width: 1
+              color: borderColor,
+              width: 1,
             ),
           ),
           child: buttonContent,
@@ -86,9 +119,11 @@ class CaminoButton extends StatelessWidget {
         button = OutlinedButton(
           onPressed: isLoading ? null : onPressed,
           style: OutlinedButton.styleFrom(
-            foregroundColor: isDark ? AppColors.primaryLight : AppColors.primary,
-            side: BorderSide(color: isDark ? AppColors.primaryLight : AppColors.primary, width: 2.0),
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: AppSpacing.md),
+            minimumSize: const Size.fromHeight(height),
+            padding: contentPadding,
+            textStyle: labelStyle,
+            foregroundColor: primaryColor,
+            side: BorderSide(color: primaryColor, width: 2.0),
             splashFactory: NoSplash.splashFactory,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
@@ -99,8 +134,10 @@ class CaminoButton extends StatelessWidget {
         button = TextButton(
           onPressed: isLoading ? null : onPressed,
           style: TextButton.styleFrom(
-            foregroundColor: isDark ? AppColors.primaryLight : AppColors.primary,
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+            minimumSize: const Size.fromHeight(height),
+            padding: contentPadding,
+            textStyle: labelStyle,
+            foregroundColor: primaryColor,
             splashFactory: NoSplash.splashFactory,
           ),
           child: buttonContent,

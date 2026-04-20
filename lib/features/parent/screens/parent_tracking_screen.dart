@@ -23,7 +23,7 @@ class ParentTrackingScreen extends StatelessWidget {
         children: [
           // Full screen map placeholder
           const Positioned.fill(
-            child: const MockMapBackground(),
+            child: MockMapBackground(),
           ),
           
           // Simulated route
@@ -34,8 +34,7 @@ class ParentTrackingScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-
-                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10)],
+                  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 10)],
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

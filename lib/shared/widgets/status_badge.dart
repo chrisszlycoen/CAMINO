@@ -22,13 +22,13 @@ class StatusBadge extends StatelessWidget {
 
     switch (status) {
       case BadgeStatus.success:
-        return isDark ? AppColors.success.withOpacity(0.2) : AppColors.success.withOpacity(0.1);
+        return isDark ? AppColors.success.withValues(alpha: 0.2) : AppColors.success.withValues(alpha: 0.1);
       case BadgeStatus.warning:
-        return isDark ? AppColors.warning.withOpacity(0.2) : AppColors.warning.withOpacity(0.1);
+        return isDark ? AppColors.warning.withValues(alpha: 0.2) : AppColors.warning.withValues(alpha: 0.1);
       case BadgeStatus.error:
-        return isDark ? AppColors.error.withOpacity(0.2) : AppColors.error.withOpacity(0.1);
+        return isDark ? AppColors.error.withValues(alpha: 0.2) : AppColors.error.withValues(alpha: 0.1);
       case BadgeStatus.info:
-        return isDark ? AppColors.info.withOpacity(0.2) : AppColors.info.withOpacity(0.1);
+        return isDark ? AppColors.info.withValues(alpha: 0.2) : AppColors.info.withValues(alpha: 0.1);
       case BadgeStatus.normal:
         return isDark ? AppColors.surfaceDarkElevated : AppColors.surfaceLightElevated;
     }

@@ -47,6 +47,7 @@ class CaminoAppBar extends StatelessWidget implements PreferredSizeWidget {
                     subtitle!.toUpperCase(),
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1.2,
                     ),

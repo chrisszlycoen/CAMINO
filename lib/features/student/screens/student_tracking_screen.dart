@@ -18,7 +18,7 @@ class StudentTrackingScreen extends StatelessWidget {
       appBar: CaminoAppBar(
         title: 'Live Tracking',
         leading: Container(
-          decoration: BoxDecoration(color: AppColors.backgroundDark.withOpacity(0.8), shape: BoxShape.circle),
+          decoration: BoxDecoration(color: AppColors.backgroundDark.withValues(alpha: 0.8), shape: BoxShape.circle),
           child: const BackButton(),
         ),
       ),
@@ -26,7 +26,7 @@ class StudentTrackingScreen extends StatelessWidget {
         children: [
           // Map Background
           const Positioned.fill(
-            child: const MockMapBackground(),
+            child: MockMapBackground(),
           ),
           
           // Route path placeholder (simulated)
@@ -52,7 +52,7 @@ class StudentTrackingScreen extends StatelessWidget {
                         Text(trip.bus.id, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(color: AppColors.primary.withOpacity(0.2), borderRadius: BorderRadius.circular(20)),
+                          decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(20)),
                           child: const Text('En Route', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold)),
                         ),
                       ],

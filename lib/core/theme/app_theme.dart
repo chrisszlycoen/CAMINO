@@ -46,6 +46,7 @@ class AppTheme {
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           elevation: 0,
+          minimumSize: const Size.fromHeight(56),
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg,
             vertical: AppSpacing.md,
@@ -54,7 +55,8 @@ class AppTheme {
             borderRadius: BorderRadius.circular(12),
           ),
           textStyle: AppTypography.getLightTextTheme().labelLarge?.copyWith(
-            fontWeight: FontWeight.w700,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -120,6 +122,7 @@ class AppTheme {
           backgroundColor: AppColors.primaryLight,
           foregroundColor: Colors.white,
           elevation: 0,
+          minimumSize: const Size.fromHeight(56),
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg,
             vertical: AppSpacing.md,
@@ -128,7 +131,8 @@ class AppTheme {
             borderRadius: BorderRadius.circular(12),
           ),
           textStyle: AppTypography.getDarkTextTheme().labelLarge?.copyWith(
-            fontWeight: FontWeight.w700,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
