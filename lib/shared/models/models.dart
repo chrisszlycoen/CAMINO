@@ -55,3 +55,21 @@ class Trip {
     required this.status,
   });
 }
+
+class CaminoNotification {
+  final String id;
+  final String title;
+  final String message;
+  final String timeLabel;
+  final String category; // e.g. 'bus', 'payment', 'schedule'
+  final bool isUnread;
+
+  const CaminoNotification({
+    required this.id,
+    required this.title,
+    required this.message,
+    required this.timeLabel,
+    required this.category,
+    this.isUnread = false,
+  });
+}

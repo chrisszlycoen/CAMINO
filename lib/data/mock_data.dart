@@ -47,5 +47,30 @@ class MockData {
     const Student(id: 'RW-STU-107', name: 'Ava Martinez', school: 'KICS', grade: 'Grade 3', photoUrl: ''),
     const Student(id: 'RW-STU-108', name: 'Liam Wilson', school: 'KICS', grade: 'Grade 6', photoUrl: ''),
   ];
+
+  static const notifications = <CaminoNotification>[
+    CaminoNotification(
+      id: 'notif_bus_arriving',
+      title: 'Bus #12 is arriving',
+      message: 'Your bus will reach Gishushu Stop in 5 mins.',
+      timeLabel: 'Just now',
+      category: 'bus',
+      isUnread: true,
+    ),
+    CaminoNotification(
+      id: 'notif_payment_received',
+      title: 'Payment Received',
+      message: 'Term 3 transport fee has been received.',
+      timeLabel: '2 days ago',
+      category: 'payment',
+    ),
+    CaminoNotification(
+      id: 'notif_schedule_change',
+      title: 'Schedule Change',
+      message: 'Tomorrow\'s afternoon trip #13 is delayed by 15 mins.',
+      timeLabel: 'Oct 23',
+      category: 'schedule',
+    ),
+  ];
 }
 

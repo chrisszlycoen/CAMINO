@@ -98,6 +98,36 @@ class StudentProfileScreen extends ConsumerWidget {
                 ],
               ),
             ),
+
+            const SizedBox(height: AppSpacing.xl),
+
+            CaminoCard(
+              padding: EdgeInsets.zero,
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.settings_outlined),
+                    title: const Text('Settings', style: TextStyle(fontWeight: FontWeight.w500)),
+                    trailing: const Icon(Icons.chevron_right, size: 20),
+                    onTap: () => context.push('/settings'),
+                  ),
+                  Divider(height: 1, color: borderColor.withValues(alpha: 0.5)),
+                  ListTile(
+                    leading: const Icon(Icons.help_outline),
+                    title: const Text('Help & Support', style: TextStyle(fontWeight: FontWeight.w500)),
+                    trailing: const Icon(Icons.chevron_right, size: 20),
+                    onTap: () => context.push('/help'),
+                  ),
+                  Divider(height: 1, color: borderColor.withValues(alpha: 0.5)),
+                  ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: const Text('About CAMINO', style: TextStyle(fontWeight: FontWeight.w500)),
+                    trailing: const Icon(Icons.chevron_right, size: 20),
+                    onTap: () => context.push('/about'),
+                  ),
+                ],
+              ),
+            ),
             
             const SizedBox(height: AppSpacing.xl),
             

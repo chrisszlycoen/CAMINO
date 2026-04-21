@@ -7,15 +7,22 @@ import 'student_notifications_screen.dart';
 import 'student_profile_screen.dart';
 
 class StudentHomeScreen extends StatefulWidget {
-  const StudentHomeScreen({super.key});
+  final int initialIndex;
+
+  const StudentHomeScreen({super.key, this.initialIndex = 0});
 
   @override
-
   State<StudentHomeScreen> createState() => _StudentHomeScreenState();
 }
 
 class _StudentHomeScreenState extends State<StudentHomeScreen> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   final List<Widget> _screens = [
     const StudentDashboard(),

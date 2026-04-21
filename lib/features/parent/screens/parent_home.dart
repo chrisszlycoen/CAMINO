@@ -7,14 +7,22 @@ import 'parent_alerts_screen.dart';
 import 'parent_profile_screen.dart';
 
 class ParentHomeScreen extends StatefulWidget {
-  const ParentHomeScreen({super.key});
+  final int initialIndex;
+
+  const ParentHomeScreen({super.key, this.initialIndex = 0});
 
   @override
   State<ParentHomeScreen> createState() => _ParentHomeScreenState();
 }
 
 class _ParentHomeScreenState extends State<ParentHomeScreen> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   final List<Widget> _screens = [
     const ParentDashboard(),

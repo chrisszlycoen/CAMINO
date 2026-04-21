@@ -7,14 +7,22 @@ import 'staff_route_screen.dart';
 import 'staff_profile_screen.dart';
 
 class StaffHomeScreen extends StatefulWidget {
-  const StaffHomeScreen({super.key});
+  final int initialIndex;
+
+  const StaffHomeScreen({super.key, this.initialIndex = 0});
 
   @override
   State<StaffHomeScreen> createState() => _StaffHomeScreenState();
 }
 
 class _StaffHomeScreenState extends State<StaffHomeScreen> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   final List<Widget> _screens = [
     const StaffDashboard(),

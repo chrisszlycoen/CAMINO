@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../data/mock_data.dart';
 import '../../../shared/widgets/camino_app_bar.dart';
 
 class ParentAlertsScreen extends StatelessWidget {
@@ -8,6 +10,8 @@ class ParentAlertsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = MockData.notifications;
+
     return Scaffold(
       appBar: const CaminoAppBar(
         title: 'Alerts',
@@ -15,39 +19,33 @@ class ParentAlertsScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
-        children: [
-          _AlertTile(
-            title: 'Child Boarded',
-            message: 'Jean safely boarded Bus #12 at Home Stop.',
-            time: '8:05 AM',
-            icon: Icons.check_circle,
-            color: AppColors.success,
-            isNew: true,
-          ),
-          _AlertTile(
-            title: 'Bus Approaching',
-            message: 'Bus #12 is 5 minutes away from Home Stop.',
-            time: '8:00 AM',
-            icon: Icons.near_me,
-            color: AppColors.info,
-          ),
-          _AlertTile(
-            title: 'Payment Successful',
-            message: 'We received your payment of RWF 45,000 for Term 3.',
-            time: 'Oct 15',
-            icon: Icons.payment,
-            color: AppColors.primary,
-          ),
-          _AlertTile(
-            title: 'Child Arrived at School',
-            message: 'Jean safely arrived at Kigali International Community School.',
-            time: 'Yesterday',
-            icon: Icons.school,
-            color: AppColors.success,
-          ),
-        ],
+        children: items.map((n) {
+          final cfg = _categoryConfig(n.category);
+          return _AlertTile(
+            title: n.title,
+            message: n.message,
+            time: n.timeLabel,
+            icon: cfg.icon,
+            color: cfg.color,
+            isNew: n.isUnread,
+            onTap: () => context.push('/parent/alerts/${n.id}'),
+          );
+        }).toList(),
       ),
     );
+  }
+}
+
+({IconData icon, Color color}) _categoryConfig(String category) {
+  switch (category) {
+    case 'bus':
+      return (icon: Icons.directions_bus, color: AppColors.primary);
+    case 'payment':
+      return (icon: Icons.payment, color: AppColors.success);
+    case 'schedule':
+      return (icon: Icons.schedule, color: AppColors.warning);
+    default:
+      return (icon: Icons.notifications, color: AppColors.info);
   }
 }
 
@@ -58,6 +56,7 @@ class _AlertTile extends StatelessWidget {
   final IconData icon;
   final Color color;
   final bool isNew;
+  final VoidCallback onTap;
 
   const _AlertTile({
     required this.title,
@@ -65,6 +64,7 @@ class _AlertTile extends StatelessWidget {
     required this.time,
     required this.icon,
     required this.color,
+    required this.onTap,
     this.isNew = false, 
   });
 
@@ -77,7 +77,6 @@ class _AlertTile extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(bottom: AppSpacing.md),
-      padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
         color: isNew ? color.withValues(alpha: 0.05) : bgColor,
         borderRadius: AppSpacing.borderRadiusMd,
@@ -85,53 +84,63 @@ class _AlertTile extends StatelessWidget {
           color: isNew ? color.withValues(alpha: 0.3) : borderColor,
         ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(icon, color: color, size: 24),
-          ),
-          const SizedBox(width: AppSpacing.md),
-          Expanded(
-            child: Column(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: AppSpacing.borderRadiusMd,
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        title,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: isNew ? FontWeight.bold : FontWeight.w600,
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(icon, color: color, size: 24),
+                ),
+                const SizedBox(width: AppSpacing.md),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              title,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            time,
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: textColor,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: AppSpacing.xs),
+                      Text(
+                        message,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: textColor,
                         ),
                       ),
-                    ),
-                    Text(
-                      time,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isNew ? color : textColor,
-                        fontWeight: isNew ? FontWeight.bold : FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                Text(
-                  message,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: textColor,
+                    ],
                   ),
                 ),
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
