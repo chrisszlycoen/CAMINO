@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #0A3D2F;
+  --primary-light: #1B6A56;
+  --sidebar-width: 260px;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 font-sans antialiased;
+}
+
+.sidebar-link {
+  @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150;
+}
+
+.sidebar-link:hover {
+  @apply bg-white/10;
+}
+
+.sidebar-link.active {
+  @apply bg-white/15 text-white font-semibold;
+}
+
+.stat-card {
+  @apply bg-white rounded-2xl border border-gray-100 p-5 transition-shadow hover:shadow-md;
+}
+
+.data-card {
+  @apply bg-white rounded-2xl border border-gray-100 overflow-hidden;
+}
+
+.page-title {
+  @apply text-2xl font-bold tracking-tight;
+}
+
+.page-subtitle {
+  @apply text-sm text-gray-500 mt-0.5;
+}
+
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+}
+
+.badge-green { @apply badge bg-green-50 text-green-700; }
+.badge-yellow { @apply badge bg-yellow-50 text-yellow-700; }
+.badge-red { @apply badge bg-red-50 text-red-700; }
+.badge-blue { @apply badge bg-blue-50 text-blue-700; }
+.badge-gray { @apply badge bg-gray-100 text-gray-600; }
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-150;
+  background-color: var(--primary);
+}
+.btn-primary:hover { background-color: var(--primary-light); }
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-gray-200 bg-white text-gray-700 transition-all duration-150 hover:bg-gray-50;
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-red-600 transition-all duration-150 hover:bg-red-700;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto;
+}
+
+.form-input {
+  @apply w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none transition-all duration-150 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20;
+}
+
+.form-label {
+  @apply block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5;
+}
+
+.table-header {
+  @apply px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50 border-b border-gray-100;
+}
+
+.table-cell {
+  @apply px-4 py-3 text-sm border-b border-gray-50;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
