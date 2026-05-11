@@ -26,7 +26,8 @@ export default function UsersPage() {
   const openAdd = () => { setEditing(null); setForm({ name: '', email: '', phone: '', school: '', grade: '', role: 'student', isActive: true }); setShowModal(true); };
   const openEdit = (u: AdminUser) => { setEditing(u); setForm({ name: u.name, email: u.email, phone: u.phone || '', school: u.school || '', grade: u.grade || '', role: u.role, isActive: u.isActive }); setShowModal(true); };
   const save = async () => {
-    if (editing) { await DataService.updateUser({ ...editing, ...form }); } else { await DataService.addUser({ ...form, createdAt: new Date().toISOString().split('T')[0] } as any); }
+    const payload = { ...form, role: form.role as any };
+    if (editing) { await DataService.updateUser({ ...editing, ...payload }); } else { await DataService.addUser({ ...payload, createdAt: new Date().toISOString().split('T')[0] } as any); }
     setShowModal(false); DataService.getUsers().then(setUsers);
   };
   const del = async (id: string) => { if (confirm('Delete this user?')) { await DataService.deleteUser(id); DataService.getUsers().then(setUsers); } };

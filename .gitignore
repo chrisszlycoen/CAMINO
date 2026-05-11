@@ -49,3 +49,9 @@ admin-portal/node_modules/
 admin-portal/.next/
 admin-portal/out/
 *.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
