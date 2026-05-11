@@ -11,6 +11,8 @@ import '../../features/common/screens/settings_screen.dart';
 import '../../features/common/screens/help_support_screen.dart';
 import '../../features/common/screens/about_screen.dart';
 import '../../features/parent/screens/linked_children_screen.dart';
+import '../../features/admin/screens/admin_home.dart';
+import '../../features/admin/screens/admin_login_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
@@ -118,6 +120,20 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/staff/profile',
       builder: (context, state) => const StaffHomeScreen(initialIndex: 4),
+    ),
+
+    // Admin routes
+    GoRoute(
+      path: '/admin/login',
+      builder: (context, state) => const AdminLoginScreen(),
+    ),
+    GoRoute(
+      path: '/admin/dashboard',
+      builder: (context, state) => const AdminHomeScreen(),
+    ),
+    GoRoute(
+      path: '/admin',
+      redirect: (context, state) => '/admin/dashboard',
     ),
 
     // Common utility pages
