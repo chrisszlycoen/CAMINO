@@ -1,4 +1,4 @@
-enum AuthRole { admin, student, parent, staff }
+enum AuthRole { admin, student, parent, staff, driver }
 
 class AuthUser {
   final String id;

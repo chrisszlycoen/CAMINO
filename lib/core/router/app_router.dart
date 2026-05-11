@@ -21,6 +21,7 @@ String _homeForRole(AuthRole role) {
     case AuthRole.admin: return '/admin/dashboard';
     case AuthRole.student: return '/student/home';
     case AuthRole.staff: return '/staff/home';
+    case AuthRole.driver: return '/staff/home';
     case AuthRole.parent: return '/parent/home';
   }
 }
@@ -51,6 +52,7 @@ final appRouter = GoRouter(
       AuthRole.admin:  ['/admin', '/settings', '/help', '/about'],
       AuthRole.student: ['/student', '/settings', '/help', '/about'],
       AuthRole.staff:   ['/staff', '/settings', '/help', '/about'],
+      AuthRole.driver:  ['/staff', '/settings', '/help', '/about'],
       AuthRole.parent:  ['/parent', '/settings', '/help', '/about'],
     };
 
