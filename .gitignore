@@ -48,3 +48,4 @@ app.*.map.json
 admin-portal/node_modules/
 admin-portal/.next/
 admin-portal/out/
+*.tsbuildinfo
