@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'auth_service.dart';
+import 'auth_guard.dart';
 
 class MockAuthService implements AuthService {
   AuthUser? _currentUser;
   final _controller = StreamController<AuthUser?>.broadcast();
 
   static const _validCredentials = {
-    'admin@camino.rw': {'password': 'admin123', 'name': 'Admin User', 'role': 'admin'},
-    'staff@camino.rw': {'password': 'staff123', 'name': 'Jean Baptiste', 'role': 'staff'},
+    'admin@camino.rw':   {'password': 'admin123',   'name': 'Admin User',       'role': 'admin',  'id': 'ADM-001'},
+    'staff@camino.rw':   {'password': 'staff123',   'name': 'Jean Baptiste',    'role': 'staff',  'id': 'STF-001'},
+    'student@camino.rw': {'password': 'student123', 'name': 'Jean Niyonzima',   'role': 'student', 'id': 'STU-001'},
+    'parent@camino.rw':  {'password': 'parent123',  'name': 'Sarah Uwimana',    'role': 'parent', 'id': 'PAR-001'},
+    'driver@camino.rw':  {'password': 'driver123',  'name': 'Alex Rukundo',     'role': 'staff',  'id': 'STF-002'},
   };
 
   @override
@@ -21,6 +25,7 @@ class MockAuthService implements AuthService {
 
   MockAuthService() {
     _currentUser = null;
+    authGuard.setUser(null);
   }
 
   @override
@@ -34,17 +39,18 @@ class MockAuthService implements AuthService {
 
     final role = AuthRole.values.firstWhere(
       (r) => r.name == creds['role'],
-      orElse: () => AuthRole.admin,
+      orElse: () => AuthRole.student,
     );
 
     _currentUser = AuthUser(
-      id: email == 'admin@camino.rw' ? 'ADM-001' : 'STF-001',
+      id: creds['id'] as String,
       email: email,
       name: creds['name'] as String,
       role: role,
     );
 
     _controller.add(_currentUser);
+    authGuard.setUser(_currentUser);
     return _currentUser!;
   }
 
@@ -52,6 +58,7 @@ class MockAuthService implements AuthService {
   Future<void> logout() async {
     _currentUser = null;
     _controller.add(null);
+    authGuard.setUser(null);
   }
 
   @override
@@ -64,6 +71,7 @@ class MockAuthService implements AuthService {
       role: role,
     );
     _controller.add(_currentUser);
+    authGuard.setUser(_currentUser);
     return _currentUser!;
   }
 
