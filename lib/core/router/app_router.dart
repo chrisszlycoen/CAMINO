@@ -5,6 +5,7 @@ import '../auth/auth_guard.dart';
 import '../../features/auth/screens/splash_screen.dart';
 import '../../features/auth/screens/login_screen.dart';
 import '../../features/auth/screens/forgot_password_screen.dart';
+import '../../features/auth/screens/setup_screen.dart';
 import '../../features/student/screens/student_home.dart';
 import '../../features/staff/screens/staff_home.dart';
 import '../../features/parent/screens/parent_home.dart';
@@ -36,24 +37,25 @@ final appRouter = GoRouter(
 
     final publicPaths = ['/', '/login', '/forgot-password'];
 
-    // Not logged in → only public paths allowed
     if (!isLoggedIn) {
       if (publicPaths.contains(location)) return null;
       return '/login';
     }
 
-    // Logged in → never see login/splash
     if (location == '/' || location == '/login') {
       return _homeForRole(user.role);
     }
 
-    // RBAC: define which paths each role can access
+    if (user.requiresNameChange || user.requiresPasswordChange) {
+      if (location != '/setup') return '/setup';
+    }
+
     final roleAllowed = <AuthRole, List<String>>{
-      AuthRole.admin:  ['/admin', '/settings', '/help', '/about'],
-      AuthRole.student: ['/student', '/settings', '/help', '/about'],
-      AuthRole.staff:   ['/staff', '/settings', '/help', '/about'],
-      AuthRole.driver:  ['/staff', '/settings', '/help', '/about'],
-      AuthRole.parent:  ['/parent', '/settings', '/help', '/about'],
+      AuthRole.admin:  ['/admin', '/setup', '/settings', '/help', '/about'],
+      AuthRole.student: ['/student', '/setup', '/settings', '/help', '/about'],
+      AuthRole.staff:   ['/staff', '/setup', '/settings', '/help', '/about'],
+      AuthRole.driver:  ['/staff', '/setup', '/settings', '/help', '/about'],
+      AuthRole.parent:  ['/parent', '/setup', '/settings', '/help', '/about'],
     };
 
     final allowed = roleAllowed[user.role]!;
@@ -69,8 +71,8 @@ final appRouter = GoRouter(
     GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(path: '/forgot-password', builder: (context, state) => const ForgotPasswordScreen()),
+    GoRoute(path: '/setup', builder: (context, state) => const SetupScreen()),
 
-    // Student routes
     GoRoute(path: '/student/home', builder: (context, state) => const StudentHomeScreen()),
     GoRoute(path: '/student/qr', builder: (context, state) => const StudentHomeScreen(initialIndex: 1)),
     GoRoute(path: '/student/track', builder: (context, state) => const StudentHomeScreen(initialIndex: 2)),
@@ -81,7 +83,6 @@ final appRouter = GoRouter(
       return NotificationDetailScreen(audience: NotificationAudience.student, notificationId: id);
     }),
 
-    // Parent routes
     GoRoute(path: '/parent/home', builder: (context, state) => const ParentHomeScreen()),
     GoRoute(path: '/parent/track', builder: (context, state) => const ParentHomeScreen(initialIndex: 1)),
     GoRoute(path: '/parent/payments', builder: (context, state) => const ParentHomeScreen(initialIndex: 2)),
@@ -93,19 +94,16 @@ final appRouter = GoRouter(
     }),
     GoRoute(path: '/parent/linked-children', builder: (context, state) => const LinkedChildrenScreen()),
 
-    // Staff routes
     GoRoute(path: '/staff/home', builder: (context, state) => const StaffHomeScreen()),
     GoRoute(path: '/staff/scan', builder: (context, state) => const StaffHomeScreen(initialIndex: 1)),
     GoRoute(path: '/staff/passengers', builder: (context, state) => const StaffHomeScreen(initialIndex: 2)),
     GoRoute(path: '/staff/route', builder: (context, state) => const StaffHomeScreen(initialIndex: 3)),
     GoRoute(path: '/staff/profile', builder: (context, state) => const StaffHomeScreen(initialIndex: 4)),
 
-    // Admin routes
     GoRoute(path: '/admin/login', builder: (context, state) => const AdminLoginScreen()),
     GoRoute(path: '/admin/dashboard', builder: (context, state) => const AdminHomeScreen()),
     GoRoute(path: '/admin', redirect: (context, state) => '/admin/dashboard'),
 
-    // Common utility pages
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/help', builder: (context, state) => const HelpSupportScreen()),
     GoRoute(path: '/about', builder: (context, state) => const AboutScreen()),

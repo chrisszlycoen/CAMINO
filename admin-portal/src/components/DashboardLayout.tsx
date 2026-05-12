@@ -1,31 +1,40 @@
 'use client';
 
-import { ReactNode } from 'react';
-import { useAuth } from '@/lib/auth';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useAuth } from '@/lib/auth';
 import Sidebar from './Sidebar';
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const { isAuthenticated, loading } = useAuth();
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, loading, requiresSetup } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (!loading && !isAuthenticated) router.replace('/login');
-  }, [isAuthenticated, loading, router]);
+    if (loading) return;
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+    if (requiresSetup && pathname !== '/setup') {
+      router.push('/setup');
+    }
+  }, [loading, isAuthenticated, requiresSetup, pathname, router]);
 
-  if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="animate-spin w-8 h-8 border-2 border-[#0A3D2F] border-t-transparent rounded-full" />
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-700" />
+      </div>
+    );
+  }
 
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50">
       <Sidebar />
-      <main style={{ marginLeft: 'var(--sidebar-width)' }} className="min-h-screen">
+      <main className="flex-1 overflow-auto">
         {children}
       </main>
     </div>

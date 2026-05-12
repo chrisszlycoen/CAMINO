@@ -30,11 +30,16 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() { _isLoading = true; _errorMessage = null; });
     try {
-      await ref.read(authServiceProvider).login(
+      final user = await ref.read(authServiceProvider).login(
         _emailController.text.trim(),
         _passwordController.text,
       );
-      if (mounted) context.go('/admin/dashboard');
+      if (!mounted) return;
+      if (user.requiresNameChange || user.requiresPasswordChange) {
+        context.go('/setup');
+      } else {
+        context.go('/admin/dashboard');
+      }
     } catch (e) {
       setState(() => _errorMessage = e.toString().replaceFirst('Exception: ', ''));
     } finally {
@@ -140,7 +145,6 @@ class _AdminLoginScreenState extends ConsumerState<AdminLoginScreen> {
                   ),
 
                   const SizedBox(height: 24),
-                  Text('Demo: admin@camino.rw / admin123', style: TextStyle(fontSize: 12, color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight)),
                 ],
               ),
             ),

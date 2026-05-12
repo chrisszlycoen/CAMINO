@@ -55,3 +55,6 @@ admin-portal/out/
 .env.local
 .env.production
 .env.development
+
+# Supabase
+supabase/.temp/

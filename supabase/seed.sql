@@ -4,16 +4,17 @@
 -- Run AFTER schema migration in Supabase SQL Editor.
 -- ============================================================
 
--- Helper: create a user in auth.users + auto-trigger creates profile
--- For local dev, create users with these emails in Supabase Auth UI:
---   admin@camino.rw / admin123
---   staff@camino.rw / staff123
---   student@camino.rw / student123
---   parent@camino.rw / parent123
---   driver@camino.rw / driver123
+-- Helper: create users in auth.users. Each is created via the
+-- Supabase Auth admin API. The handle_new_user trigger creates
+-- a profile row with requires_password_change = true and
+-- requires_name_change = true.
+--
+-- In production, use Supabase Dashboard > Authentication > Users
+-- to create users. For local dev, use the SQL below.
 
--- Once users exist, update their profiles:
-update public.profiles set name = 'Admin User', role = 'admin', phone = '+250781234900' where id = (select id from auth.users where email = 'admin@camino.rw');
+-- Create admin user (password set via Supabase Auth, paste UUID below)
+-- Then update profile:
+update public.profiles set name = 'Admin User', role = 'admin', phone = '+250781234900', requires_password_change = true, requires_name_change = true where id = (select id from auth.users where email = 'admin@camino.rw');
 update public.profiles set name = 'Jean Baptiste', role = 'staff', phone = '+250781234700', school = 'KICS' where id = (select id from auth.users where email = 'staff@camino.rw');
 update public.profiles set name = 'Jean Niyonzima', role = 'student', phone = '+250781234501', school = 'Kigali International Community School', grade = 'Grade 10', points = 450, streak_days = 12 where id = (select id from auth.users where email = 'student@camino.rw');
 update public.profiles set name = 'Sarah Uwimana', role = 'parent', phone = '+250781234600' where id = (select id from auth.users where email = 'parent@camino.rw');

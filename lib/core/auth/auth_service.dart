@@ -6,6 +6,8 @@ class AuthUser {
   final String name;
   final AuthRole role;
   final String? avatarUrl;
+  final bool requiresPasswordChange;
+  final bool requiresNameChange;
 
   const AuthUser({
     required this.id,
@@ -13,7 +15,29 @@ class AuthUser {
     required this.name,
     required this.role,
     this.avatarUrl,
+    this.requiresPasswordChange = true,
+    this.requiresNameChange = true,
   });
+
+  AuthUser copyWith({
+    String? id,
+    String? email,
+    String? name,
+    AuthRole? role,
+    String? avatarUrl,
+    bool? requiresPasswordChange,
+    bool? requiresNameChange,
+  }) {
+    return AuthUser(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      name: name ?? this.name,
+      role: role ?? this.role,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+      requiresPasswordChange: requiresPasswordChange ?? this.requiresPasswordChange,
+      requiresNameChange: requiresNameChange ?? this.requiresNameChange,
+    );
+  }
 }
 
 abstract class AuthService {

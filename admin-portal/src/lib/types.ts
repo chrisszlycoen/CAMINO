@@ -75,4 +75,6 @@ export interface AuthUser {
   email: string;
   name: string;
   role: ProfileRole;
+  requiresPasswordChange?: boolean;
+  requiresNameChange?: boolean;
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/admin_stats_card.dart';
-import '../data/mock_admin_data.dart';
+import '../../../data/admin_service_provider.dart';
 import '../models/admin_models.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -24,7 +24,8 @@ class _AdminRoutesScreenState extends ConsumerState<AdminRoutesScreen> {
 
   Future<void> _loadRoutes() async {
     setState(() => _loading = true);
-    final routes = await MockAdminData.getRoutes();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final routes = await service.getRoutes();
     if (mounted) setState(() { _routes = routes; _loading = false; });
   }
 
@@ -49,7 +50,7 @@ class _AdminRoutesScreenState extends ConsumerState<AdminRoutesScreen> {
                   TextField(controller: stopsCtrl, decoration: const InputDecoration(labelText: 'Stops (one per line)', border: OutlineInputBorder(), hintText: 'Stop 1\nStop 2\nStop 3'), maxLines: 5),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: status,
+                    initialValue: status,
                     decoration: const InputDecoration(labelText: 'Status', border: OutlineInputBorder()),
                     items: const [
                       DropdownMenuItem(value: 'active', child: Text('Active')),
@@ -73,13 +74,14 @@ class _AdminRoutesScreenState extends ConsumerState<AdminRoutesScreen> {
     );
 
     if (result != null) {
+      final service = ref.read(supabaseAdminServiceProvider);
       if (route != null) {
-        await MockAdminData.updateRoute(route.copyWith(
+        await service.updateRoute(route.copyWith(
           name: result['name'], stops: List<String>.from(result['stops']), status: result['status'],
         ));
       } else {
-        await MockAdminData.addRoute(AdminRoute(
-          id: MockAdminData.generateId('RTE'),
+        await service.addRoute(AdminRoute(
+          id: '',
           name: result['name'], stops: List<String>.from(result['stops']), status: result['status'],
         ));
       }
@@ -153,12 +155,15 @@ class _AdminRoutesScreenState extends ConsumerState<AdminRoutesScreen> {
                                     IconButton(icon: const Icon(Icons.edit, size: 18), onPressed: () => _showRouteDialog(route: r), color: AppColors.info),
                                     IconButton(icon: const Icon(Icons.delete, size: 18), onPressed: () async {
                                       final confirm = await showDialog<bool>(context: context, builder: (ctx) => AlertDialog(title: const Text('Delete Route'), content: Text('Delete ${r.name}?'), actions: [TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')), ElevatedButton(onPressed: () => Navigator.pop(ctx, true), style: ElevatedButton.styleFrom(backgroundColor: AppColors.error), child: const Text('Delete'))]));
-                                      if (confirm == true) { await MockAdminData.deleteRoute(r.id); _loadRoutes(); }
+                                      if (confirm == true) {
+                                        final service = ref.read(supabaseAdminServiceProvider);
+                                        await service.deleteRoute(r.id);
+                                        _loadRoutes();
+                                      }
                                     }, color: AppColors.error),
                                   ],
                                 ),
                                 const SizedBox(height: 16),
-                                // Stops timeline
                                 ...r.stops.asMap().entries.map((entry) {
                                   final isLast = entry.key == r.stops.length - 1;
                                   return Row(

@@ -160,7 +160,7 @@ class AdminSettingsScreen extends ConsumerWidget {
               ],
             ),
           ),
-          Switch(value: value, onChanged: (v) {}, activeColor: AppColors.primary),
+          Switch(value: value, onChanged: (v) {}, activeThumbColor: AppColors.primary),
         ],
       ),
     );

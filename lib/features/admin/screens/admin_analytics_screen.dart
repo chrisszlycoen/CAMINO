@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../widgets/admin_stats_card.dart';
-import '../data/mock_admin_data.dart';
+import '../../../data/admin_service_provider.dart';
 import '../models/admin_models.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -26,9 +26,10 @@ class _AdminAnalyticsScreenState extends ConsumerState<AdminAnalyticsScreen> {
   }
 
   Future<void> _loadData() async {
-    final weekly = await MockAdminData.getWeeklyBoarding();
-    final routes = await MockAdminData.getRoutePerformance();
-    final dist = await MockAdminData.getStudentDistribution();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final weekly = await service.getWeeklyBoarding();
+    final routes = await service.getRoutePerformance();
+    final dist = await service.getStudentDistribution();
     if (mounted) setState(() { _weeklyData = weekly; _routeData = routes; _studentDist = dist; _loading = false; });
   }
 
@@ -46,8 +47,6 @@ class _AdminAnalyticsScreenState extends ConsumerState<AdminAnalyticsScreen> {
               children: [
                 AdminPageHeader(title: 'Analytics', subtitle: 'Data-driven insights'),
                 const SizedBox(height: 24),
-
-                // Summary cards
                 LayoutBuilder(
                   builder: (context, constraints) {
                     final count = constraints.maxWidth > 800 ? 4 : 2;
@@ -68,8 +67,6 @@ class _AdminAnalyticsScreenState extends ConsumerState<AdminAnalyticsScreen> {
                   },
                 ),
                 const SizedBox(height: 24),
-
-                // Charts grid
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -79,7 +76,6 @@ class _AdminAnalyticsScreenState extends ConsumerState<AdminAnalyticsScreen> {
                   ],
                 ),
                 const SizedBox(height: 24),
-
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

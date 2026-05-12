@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/admin_stats_card.dart';
-import '../data/mock_admin_data.dart';
+import '../../../data/admin_service_provider.dart';
 import '../models/admin_models.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -17,7 +17,7 @@ class _AdminSchedulesScreenState extends ConsumerState<AdminSchedulesScreen> {
   List<AdminSchedule> _filtered = [];
   bool _loading = true;
   String _statusFilter = 'all';
-  String _dateFilter = 'today';
+  String _dateFilter = 'all';
 
   @override
   void initState() {
@@ -27,12 +27,13 @@ class _AdminSchedulesScreenState extends ConsumerState<AdminSchedulesScreen> {
 
   Future<void> _loadSchedules() async {
     setState(() => _loading = true);
-    final schedules = await MockAdminData.getSchedules();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final schedules = await service.getSchedules();
     if (mounted) setState(() { _schedules = schedules; _applyFilter(); _loading = false; });
   }
 
   void _applyFilter() {
-    final today = '2026-05-11';
+    final today = DateTime.now().toIso8601String().split('T')[0];
     _filtered = _schedules.where((s) {
       if (_statusFilter != 'all' && s.status != _statusFilter) return false;
       if (_dateFilter == 'today' && s.date != today) return false;
@@ -41,13 +42,15 @@ class _AdminSchedulesScreenState extends ConsumerState<AdminSchedulesScreen> {
   }
 
   Future<void> _showScheduleDialog({AdminSchedule? schedule}) async {
-    final buses = await MockAdminData.getBuses();
-    final routes = await MockAdminData.getRoutes();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final buses = await service.getBuses();
+    final routes = await service.getRoutes();
+    if (!mounted) return;
     String? busId = schedule?.busId;
     String? busPlate = schedule?.busPlate;
     String? routeId = schedule?.routeId;
     String? routeName = schedule?.routeName;
-    final dateCtrl = TextEditingController(text: schedule?.date ?? '2026-05-11');
+    final dateCtrl = TextEditingController(text: schedule?.date ?? DateTime.now().toIso8601String().split('T')[0]);
     final depCtrl = TextEditingController(text: schedule?.departureTime ?? '06:30');
     final arrCtrl = TextEditingController(text: schedule?.arrivalTime ?? '08:00');
     String status = schedule?.status ?? 'scheduled';
@@ -64,14 +67,14 @@ class _AdminSchedulesScreenState extends ConsumerState<AdminSchedulesScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   DropdownButtonFormField<String>(
-                    value: busId,
+                    initialValue: busId,
                     decoration: const InputDecoration(labelText: 'Bus', border: OutlineInputBorder()),
                     items: buses.where((b) => b.status == 'active').map((b) => DropdownMenuItem(value: b.id, child: Text('${b.plateNumber} - ${b.driverName}'))).toList(),
                     onChanged: (v) => setDialogState(() { busId = v; busPlate = buses.firstWhere((b) => b.id == v).plateNumber; }),
                   ),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: routeId,
+                    initialValue: routeId,
                     decoration: const InputDecoration(labelText: 'Route', border: OutlineInputBorder()),
                     items: routes.where((r) => r.status == 'active').map((r) => DropdownMenuItem(value: r.id, child: Text(r.name))).toList(),
                     onChanged: (v) => setDialogState(() { routeId = v; routeName = routes.firstWhere((r) => r.id == v).name; }),
@@ -88,7 +91,7 @@ class _AdminSchedulesScreenState extends ConsumerState<AdminSchedulesScreen> {
                   ),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: status,
+                    initialValue: status,
                     decoration: const InputDecoration(labelText: 'Status', border: OutlineInputBorder()),
                     items: const [
                       DropdownMenuItem(value: 'scheduled', child: Text('Scheduled')),
@@ -115,14 +118,14 @@ class _AdminSchedulesScreenState extends ConsumerState<AdminSchedulesScreen> {
 
     if (result != null) {
       if (schedule != null) {
-        await MockAdminData.updateSchedule(schedule.copyWith(
+        await service.updateSchedule(schedule.copyWith(
           busId: result['busId'], busPlate: result['busPlate'], routeId: result['routeId'],
           routeName: result['routeName'], date: result['date'], departureTime: result['departureTime'],
           arrivalTime: result['arrivalTime'], status: result['status'],
         ));
       } else {
-        await MockAdminData.addSchedule(AdminSchedule(
-          id: MockAdminData.generateId('SCH'),
+        await service.addSchedule(AdminSchedule(
+          id: '',
           busId: result['busId'], busPlate: result['busPlate'], routeId: result['routeId'],
           routeName: result['routeName'], date: result['date'], departureTime: result['departureTime'],
           arrivalTime: result['arrivalTime'], status: result['status'],
@@ -239,7 +242,11 @@ class _AdminSchedulesScreenState extends ConsumerState<AdminSchedulesScreen> {
                                       IconButton(icon: const Icon(Icons.edit, size: 18), onPressed: () => _showScheduleDialog(schedule: s), color: AppColors.info),
                                       IconButton(icon: const Icon(Icons.delete, size: 18), onPressed: () async {
                                         final confirm = await showDialog<bool>(context: context, builder: (ctx) => AlertDialog(title: const Text('Delete Schedule'), content: Text('Delete ${s.id}?'), actions: [TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')), ElevatedButton(onPressed: () => Navigator.pop(ctx, true), style: ElevatedButton.styleFrom(backgroundColor: AppColors.error), child: const Text('Delete'))]));
-                                        if (confirm == true) { await MockAdminData.deleteSchedule(s.id); _loadSchedules(); }
+                                        if (confirm == true) {
+                                          final service = ref.read(supabaseAdminServiceProvider);
+                                          await service.deleteSchedule(s.id);
+                                          _loadSchedules();
+                                        }
                                       }, color: AppColors.error),
                                     ],
                                   )),

@@ -56,16 +56,7 @@ export default function LoginPage() {
 
             <button type="submit" disabled={loading} className="btn-primary w-full h-12 text-base">
               {loading ? <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" /> : 'Sign In'}
-            </button>
-          </form>
-
-          <div className="mt-6 pt-6 border-t border-gray-100">
-            <p className="text-xs text-gray-400 text-center leading-relaxed">
-              Demo: <strong>admin@camino.rw</strong> / <strong>admin123</strong><br />
-              student@camino.rw / staff@camino.rw / parent@camino.rw<br />
-              Password: role + 123
-            </p>
-          </div>
+            </button>          </form>
         </div>
       </div>
     </div>

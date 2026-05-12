@@ -39,7 +39,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         _passwordController.text,
       );
       if (!mounted) return;
-      _redirectToRoleHome(user.role);
+      if (user.requiresNameChange || user.requiresPasswordChange) {
+        context.go('/setup');
+      } else {
+        _redirectToRoleHome(user.role);
+      }
     } catch (e) {
       if (mounted) setState(() => _errorMessage = e.toString().replaceFirst('Exception: ', ''));
     } finally {
@@ -60,6 +64,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         break;
       case AuthRole.parent:
         context.go('/parent/home');
+        break;
+      case AuthRole.driver:
+        context.go('/driver/home');
         break;
     }
   }
@@ -135,15 +142,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                   const SizedBox(height: 48),
                   CaminoButton(label: 'Sign In', onPressed: _handleLogin, isLoading: _isLoading, icon: Icons.arrow_forward_rounded),
-                  const SizedBox(height: AppSpacing.xl),
-                  Column(
-                    children: [
-                      Text('Demo accounts:', style: TextStyle(color: subtitleColor, fontSize: 11)),
-                      const SizedBox(height: 4),
-                      Text('admin@camino.rw / student@camino.rw / staff@camino.rw / parent@camino.rw', textAlign: TextAlign.center, style: TextStyle(color: subtitleColor, fontSize: 10)),
-                      Text('Password for all: 123 (or role123)', style: TextStyle(color: subtitleColor, fontSize: 10)),
-                    ],
-                  ),
                   const SizedBox(height: AppSpacing.xxl),
                 ],
               ),

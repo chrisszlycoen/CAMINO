@@ -11,6 +11,7 @@ class CaminoTextField extends StatefulWidget {
   final Widget? suffixIcon;
   final TextAlign textAlign;
   final bool centerLabel;
+  final String? Function(String?)? validator;
 
   const CaminoTextField({
     super.key,
@@ -23,6 +24,7 @@ class CaminoTextField extends StatefulWidget {
     this.suffixIcon,
     this.textAlign = TextAlign.start,
     this.centerLabel = false,
+    this.validator,
   });
 
   @override
@@ -98,12 +100,13 @@ class _CaminoTextFieldState extends State<CaminoTextField> {
             ),
             boxShadow: _isFocused && !isDark ? AppColors.premiumShadowLight : null,
           ),
-          child: TextField(
+          child: TextFormField(
             controller: widget.controller,
             focusNode: _focusNode,
             obscureText: _isObscured,
             keyboardType: widget.keyboardType,
             textAlign: widget.textAlign,
+            validator: widget.validator,
             style: TextStyle(
               color: textColor,
               fontSize: 16,

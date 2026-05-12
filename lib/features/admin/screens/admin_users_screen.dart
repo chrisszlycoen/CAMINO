@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/admin_stats_card.dart';
-import '../data/mock_admin_data.dart';
+import '../../../data/admin_service_provider.dart';
 import '../models/admin_models.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -27,7 +27,8 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
 
   Future<void> _loadUsers() async {
     setState(() => _loading = true);
-    final users = await MockAdminData.getUsers();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final users = await service.getUsers();
     if (mounted) setState(() { _users = users; _applyFilter(); _loading = false; });
   }
 
@@ -70,7 +71,7 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
                   TextField(controller: phoneCtrl, decoration: const InputDecoration(labelText: 'Phone', border: OutlineInputBorder()), keyboardType: TextInputType.phone),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: role,
+                    initialValue: role,
                     decoration: const InputDecoration(labelText: 'Role', border: OutlineInputBorder()),
                     items: const [
                       DropdownMenuItem(value: 'student', child: Text('Student')),
@@ -109,18 +110,18 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
     );
 
     if (result != null) {
+      final service = ref.read(supabaseAdminServiceProvider);
       if (isEditing) {
-        await MockAdminData.updateUser(user!.copyWith(
+        await service.updateUser(user.copyWith(
           name: result['name'], email: result['email'], phone: result['phone'],
           school: result['school'], grade: result['grade'], role: result['role'], isActive: result['isActive'],
         ));
       } else {
-        await MockAdminData.addUser(AdminUser(
-          id: MockAdminData.generateId('USR'),
-          name: result['name'], email: result['email'], phone: result['phone'],
-          school: result['school'], grade: result['grade'], role: result['role'],
-          isActive: result['isActive'], createdAt: DateTime.now(),
-        ));
+        await service.addUser(
+          name: result['name'], email: result['email'],
+          phone: result['phone'], school: result['school'],
+          grade: result['grade'], role: result['role'],
+        );
       }
       _loadUsers();
     }
@@ -157,7 +158,6 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
               style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), elevation: 0),
             ),
           ),
-          // Filters
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 8, 24, 12),
             child: Row(
@@ -195,7 +195,6 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
               ],
             ),
           ),
-          // Table
           Expanded(
             child: _loading
                 ? const Center(child: CircularProgressIndicator())
@@ -258,7 +257,11 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
               IconButton(icon: const Icon(Icons.edit, size: 18), onPressed: () => _showUserDialog(user: u), color: AppColors.info),
               IconButton(icon: const Icon(Icons.delete, size: 18), onPressed: () async {
                 final confirm = await showDialog<bool>(context: context, builder: (ctx) => AlertDialog(title: const Text('Delete User'), content: Text('Delete ${u.name}?'), actions: [TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')), ElevatedButton(onPressed: () => Navigator.pop(ctx, true), style: ElevatedButton.styleFrom(backgroundColor: AppColors.error), child: const Text('Delete'))]));
-                if (confirm == true) { await MockAdminData.deleteUser(u.id); _loadUsers(); }
+                if (confirm == true) {
+                  final service = ref.read(supabaseAdminServiceProvider);
+                  await service.deleteUser(u.id);
+                  _loadUsers();
+                }
               }, color: AppColors.error),
             ],
           )),
@@ -279,7 +282,11 @@ class _AdminUsersScreenState extends ConsumerState<AdminUsersScreen> {
             IconButton(icon: const Icon(Icons.edit, size: 18), onPressed: () => _showUserDialog(user: u), color: AppColors.info),
             IconButton(icon: const Icon(Icons.delete, size: 18), onPressed: () async {
               final confirm = await showDialog<bool>(context: context, builder: (ctx) => AlertDialog(title: const Text('Delete User'), content: Text('Delete ${u.name}?'), actions: [TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')), ElevatedButton(onPressed: () => Navigator.pop(ctx, true), style: ElevatedButton.styleFrom(backgroundColor: AppColors.error), child: const Text('Delete'))]));
-              if (confirm == true) { await MockAdminData.deleteUser(u.id); _loadUsers(); }
+              if (confirm == true) {
+                final service = ref.read(supabaseAdminServiceProvider);
+                await service.deleteUser(u.id);
+                _loadUsers();
+              }
             }, color: AppColors.error),
           ],
         ),

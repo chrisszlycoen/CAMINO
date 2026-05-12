@@ -39,7 +39,7 @@ class MockData {
     toStop: 'KACYIRU',
     status: 'Scheduled',
   );
-  
+
   static final allStudents = [
     currentUser,
     const Student(id: 'RW-STU-105', name: 'Mia Thompson', school: 'KICS', grade: 'Grade 4', photoUrl: ''),
@@ -73,4 +73,3 @@ class MockData {
     ),
   ];
 }
-

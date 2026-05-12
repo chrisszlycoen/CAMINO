@@ -2,12 +2,13 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 const PROTECTED_PATHS = ['/dashboard', '/users', '/buses', '/routes', '/schedules', '/analytics', '/alerts', '/settings'];
+const SETUP_PATH = '/setup';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isProtected = PROTECTED_PATHS.some(p => pathname.startsWith(p));
-  if (!isProtected && pathname !== '/login') return NextResponse.next();
+  if (!isProtected && pathname !== '/login' && pathname !== SETUP_PATH) return NextResponse.next();
 
   let supabaseResponse = NextResponse.next({ request });
 

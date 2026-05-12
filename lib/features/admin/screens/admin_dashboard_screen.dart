@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../widgets/admin_stats_card.dart';
-import '../data/mock_admin_data.dart';
+import '../../../data/admin_service_provider.dart';
 import '../models/admin_models.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -26,9 +26,10 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
   }
 
   Future<void> _loadData() async {
-    final stats = await MockAdminData.getDashboardStats();
-    final weekly = await MockAdminData.getWeeklyBoarding();
-    final routes = await MockAdminData.getRoutePerformance();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final stats = await service.getDashboardStats();
+    final weekly = await service.getWeeklyBoarding();
+    final routes = await service.getRoutePerformance();
     if (mounted) {
       setState(() {
         _stats = stats;
@@ -58,12 +59,8 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
                     subtitle: 'Real-time transport overview',
                   ),
                   const SizedBox(height: 24),
-
-                  // Stats Grid
                   _buildStatsGrid(),
                   const SizedBox(height: 24),
-
-                  // Charts Row
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -73,8 +70,6 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
                     ],
                   ),
                   const SizedBox(height: 24),
-
-                  // Quick Actions & Recent
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -192,12 +187,6 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
 
   Widget _buildQuickActions(bool isDark) {
     final cardBg = isDark ? AppColors.surfaceDark : Colors.white;
-    final actions = [
-      ('Add New User', Icons.person_add, AppColors.primary),
-      ('Schedule Trip', Icons.add_road, AppColors.info),
-      ('Create Alert', Icons.add_alert, AppColors.warning),
-      ('Generate Report', Icons.assessment, AppColors.success),
-    ];
 
     return Container(
       padding: const EdgeInsets.all(20),
@@ -207,29 +196,6 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
         children: [
           Text('Quick Actions', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: isDark ? Colors.white : AppColors.textPrimaryLight)),
           const SizedBox(height: 16),
-          ...actions.map((a) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Material(
-              color: isDark ? AppColors.surfaceDarkElevated : const Color(0xFFF5F5F7),
-              borderRadius: BorderRadius.circular(10),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                  child: Row(
-                    children: [
-                      Icon(a.$2, color: a.$3, size: 20),
-                      const SizedBox(width: 12),
-                      Text(a.$1, style: TextStyle(fontWeight: FontWeight.w500, color: isDark ? Colors.white : AppColors.textPrimaryLight)),
-                      const Spacer(),
-                      Icon(Icons.chevron_right, size: 18, color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          )),
         ],
       ),
     );
@@ -237,31 +203,27 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
 
   Widget _buildRecentActivity(bool isDark) {
     final cardBg = isDark ? AppColors.surfaceDark : Colors.white;
-            final activities = [
-              ('Bus #12 departed Route A', '2 min ago', Icons.directions_bus, AppColors.primary),
-              ('45 students boarded this morning', '15 min ago', Icons.school, AppColors.success),
-              ('Alert: Engine issue on Bus #12', '1 hour ago', Icons.warning, AppColors.error),
-              ('Route B schedule updated', '2 hours ago', Icons.edit, AppColors.info),
-              ('New staff assigned to Route C', '4 hours ago', Icons.person_add, AppColors.warning),
-            ];
+    final activities = [
+      ('System ready', 'Waiting for data', Icons.check_circle, AppColors.success),
+    ];
 
-            return Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(color: cardBg, borderRadius: BorderRadius.circular(16), border: Border.all(color: isDark ? AppColors.borderDark : Colors.grey.shade200)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Recent Activity', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: isDark ? Colors.white : AppColors.textPrimaryLight)),
-                  const SizedBox(height: 16),
-                  ...activities.map((a) => Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 36, height: 36,
-                          decoration: BoxDecoration(color: a.$4.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
-                          child: Icon(a.$3, color: a.$4, size: 18),
-                        ),
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(color: cardBg, borderRadius: BorderRadius.circular(16), border: Border.all(color: isDark ? AppColors.borderDark : Colors.grey.shade200)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Recent Activity', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: isDark ? Colors.white : AppColors.textPrimaryLight)),
+          const SizedBox(height: 16),
+          ...activities.map((a) => Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: Row(
+              children: [
+                Container(
+                  width: 36, height: 36,
+                  decoration: BoxDecoration(color: a.$4.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
+                  child: Icon(a.$3, color: a.$4, size: 18),
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(

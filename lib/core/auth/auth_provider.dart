@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'auth_service.dart';
-import 'mock_auth_service.dart';
+import 'supabase_auth_service.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) {
-  return MockAuthService();
+  final service = SupabaseAuthService();
+  ref.onDispose(() => service.dispose());
+  return service;
 });
 
 final authStateProvider = StreamProvider<AuthUser?>((ref) {

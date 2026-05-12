@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/admin_stats_card.dart';
-import '../data/mock_admin_data.dart';
+import '../../../data/admin_service_provider.dart';
 import '../models/admin_models.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -26,7 +26,8 @@ class _AdminAlertsScreenState extends ConsumerState<AdminAlertsScreen> {
 
   Future<void> _loadAlerts() async {
     setState(() => _loading = true);
-    final alerts = await MockAdminData.getAlerts();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final alerts = await service.getAlerts();
     if (mounted) setState(() { _alerts = alerts; _applyFilter(); _loading = false; });
   }
 
@@ -58,7 +59,7 @@ class _AdminAlertsScreenState extends ConsumerState<AdminAlertsScreen> {
                 TextField(controller: msgCtrl, decoration: const InputDecoration(labelText: 'Message', border: OutlineInputBorder()), maxLines: 3),
                 const SizedBox(height: 12),
                 DropdownButtonFormField<String>(
-                  value: severity,
+                  initialValue: severity,
                   decoration: const InputDecoration(labelText: 'Severity', border: OutlineInputBorder()),
                   items: const [
                     DropdownMenuItem(value: 'low', child: Text('Low')),
@@ -84,8 +85,9 @@ class _AdminAlertsScreenState extends ConsumerState<AdminAlertsScreen> {
     );
 
     if (result != null) {
-      await MockAdminData.addAlert(AdminAlert(
-        id: MockAdminData.generateId('ALR'),
+      final service = ref.read(supabaseAdminServiceProvider);
+      await service.addAlert(AdminAlert(
+        id: '',
         title: result['title'], message: result['message'], severity: result['severity'],
         status: 'active', createdAt: DateTime.now(),
       ));
@@ -200,7 +202,8 @@ class _AdminAlertsScreenState extends ConsumerState<AdminAlertsScreen> {
                                     alignment: Alignment.centerRight,
                                     child: TextButton.icon(
                                       onPressed: () async {
-                                        await MockAdminData.resolveAlert(a.id, 'Admin User');
+                                        final service = ref.read(supabaseAdminServiceProvider);
+                                        await service.resolveAlert(a.id, 'Admin User');
                                         _loadAlerts();
                                       },
                                       icon: const Icon(Icons.check_circle, size: 16),

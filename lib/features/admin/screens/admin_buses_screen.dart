@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/admin_stats_card.dart';
-import '../data/mock_admin_data.dart';
+import '../../../data/admin_service_provider.dart';
 import '../models/admin_models.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -27,7 +27,8 @@ class _AdminBusesScreenState extends ConsumerState<AdminBusesScreen> {
 
   Future<void> _loadBuses() async {
     setState(() => _loading = true);
-    final buses = await MockAdminData.getBuses();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final buses = await service.getBuses();
     if (mounted) setState(() { _buses = buses; _applyFilter(); _loading = false; });
   }
 
@@ -47,7 +48,9 @@ class _AdminBusesScreenState extends ConsumerState<AdminBusesScreen> {
     final driverCtrl = TextEditingController(text: bus?.driverName ?? '');
     final phoneCtrl = TextEditingController(text: bus?.driverPhone ?? '');
     final capCtrl = TextEditingController(text: bus?.capacity.toString() ?? '45');
-    final routes = await MockAdminData.getRoutes();
+    final service = ref.read(supabaseAdminServiceProvider);
+    final routes = await service.getRoutes();
+    if (!mounted) return;
     String? routeId = bus?.routeId;
     String? routeName = bus?.routeName;
     String status = bus?.status ?? 'active';
@@ -72,7 +75,7 @@ class _AdminBusesScreenState extends ConsumerState<AdminBusesScreen> {
                   TextField(controller: capCtrl, decoration: const InputDecoration(labelText: 'Capacity', border: OutlineInputBorder()), keyboardType: TextInputType.number),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: routeId,
+                    initialValue: routeId,
                     decoration: const InputDecoration(labelText: 'Assigned Route', border: OutlineInputBorder()),
                     items: [
                       const DropdownMenuItem(value: null, child: Text('None')),
@@ -82,7 +85,7 @@ class _AdminBusesScreenState extends ConsumerState<AdminBusesScreen> {
                   ),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: status,
+                    initialValue: status,
                     decoration: const InputDecoration(labelText: 'Status', border: OutlineInputBorder()),
                     items: const [
                       DropdownMenuItem(value: 'active', child: Text('Active')),
@@ -108,13 +111,13 @@ class _AdminBusesScreenState extends ConsumerState<AdminBusesScreen> {
 
     if (result != null) {
       if (bus != null) {
-        await MockAdminData.updateBus(bus.copyWith(
+        await service.updateBus(bus.copyWith(
           plateNumber: result['plateNumber'], driverName: result['driverName'], driverPhone: result['driverPhone'],
           capacity: result['capacity'], routeId: result['routeId'], routeName: result['routeName'], status: result['status'],
         ));
       } else {
-        await MockAdminData.addBus(AdminBus(
-          id: MockAdminData.generateId('BUS'),
+        await service.addBus(AdminBus(
+          id: '',
           plateNumber: result['plateNumber'], driverName: result['driverName'], driverPhone: result['driverPhone'],
           capacity: result['capacity'], routeId: result['routeId'], routeName: result['routeName'], status: result['status'],
         ));
@@ -236,7 +239,11 @@ class _AdminBusesScreenState extends ConsumerState<AdminBusesScreen> {
                                       IconButton(icon: const Icon(Icons.edit, size: 18), onPressed: () => _showBusDialog(bus: b), color: AppColors.info),
                                       IconButton(icon: const Icon(Icons.delete, size: 18), onPressed: () async {
                                         final confirm = await showDialog<bool>(context: context, builder: (ctx) => AlertDialog(title: const Text('Delete Bus'), content: Text('Delete ${b.plateNumber}?'), actions: [TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')), ElevatedButton(onPressed: () => Navigator.pop(ctx, true), style: ElevatedButton.styleFrom(backgroundColor: AppColors.error), child: const Text('Delete'))]));
-                                        if (confirm == true) { await MockAdminData.deleteBus(b.id); _loadBuses(); }
+                                        if (confirm == true) {
+                                          final service = ref.read(supabaseAdminServiceProvider);
+                                          await service.deleteBus(b.id);
+                                          _loadBuses();
+                                        }
                                       }, color: AppColors.error),
                                     ],
                                   )),
