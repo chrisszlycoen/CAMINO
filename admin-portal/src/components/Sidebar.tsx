@@ -3,16 +3,17 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
+import { BarChart3, Users, Bus, Map, Calendar, TrendingUp, Bell, Settings, LogOut } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { href: '/dashboard', label: 'Dashboard', icon: '📊' },
-  { href: '/users', label: 'Users', icon: '👥' },
-  { href: '/buses', label: 'Buses', icon: '🚌' },
-  { href: '/routes', label: 'Routes', icon: '🗺️' },
-  { href: '/schedules', label: 'Schedules', icon: '📅' },
-  { href: '/analytics', label: 'Analytics', icon: '📈' },
-  { href: '/alerts', label: 'Alerts', icon: '🔔' },
-  { href: '/settings', label: 'Settings', icon: '⚙️' },
+  { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
+  { href: '/users', label: 'Users', icon: Users },
+  { href: '/buses', label: 'Buses', icon: Bus },
+  { href: '/routes', label: 'Routes', icon: Map },
+  { href: '/schedules', label: 'Schedules', icon: Calendar },
+  { href: '/analytics', label: 'Analytics', icon: TrendingUp },
+  { href: '/alerts', label: 'Alerts', icon: Bell },
+  { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -21,10 +22,10 @@ export default function Sidebar() {
   const router = useRouter();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen flex flex-col" style={{ width: 'var(--sidebar-width)', backgroundColor: '#0A3D2F' }}>
+    <aside className="flex flex-col shrink-0" style={{ width: 'var(--sidebar-width)', backgroundColor: '#0A3D2F' }}>
       <div className="p-5 border-b border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-white text-lg">🚌</div>
+          <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-white"><Bus size={20} /></div>
           <div>
             <div className="text-white font-black text-lg tracking-tight">CAMINO</div>
             <div className="text-white/50 text-[10px] font-semibold tracking-widest uppercase">Admin Portal</div>
@@ -38,7 +39,7 @@ export default function Sidebar() {
           return (
             <Link key={item.href} href={item.href}
               className={`sidebar-link ${isActive ? 'active' : 'text-white/70'}`}>
-              <span className="text-lg">{item.icon}</span>
+              <item.icon size={20} />
               <span>{item.label}</span>
             </Link>
           );
@@ -57,7 +58,7 @@ export default function Sidebar() {
         </div>
         <button onClick={() => { logout(); router.replace('/login'); }}
           className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors w-full">
-          <span>🚪</span>
+          <LogOut size={16} />
           <span>Sign Out</span>
         </button>
       </div>

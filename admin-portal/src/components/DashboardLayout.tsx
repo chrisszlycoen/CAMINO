@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
 import Sidebar from './Sidebar';
+import { Bell } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, loading, requiresSetup } = useAuth();
@@ -31,12 +32,29 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (!isAuthenticated) return null;
 
+  const pageName = pathname.split('/').filter(Boolean).pop() || 'dashboard';
+
   return (
     <div className="flex h-screen bg-gray-50">
       <Sidebar />
-      <main className="flex-1 overflow-auto">
-        {children}
-      </main>
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6 shrink-0">
+          <div className="flex items-center gap-2 text-sm text-gray-400">
+            <span className="text-gray-900 font-medium">Admin</span>
+            <span>/</span>
+            <span className="capitalize text-gray-600 font-medium">{pageName.replace(/-/g, ' ')}</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <button className="relative p-2 rounded-lg hover:bg-gray-100 transition-colors">
+              <Bell size={18} className="text-gray-500" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+            </button>
+          </div>
+        </header>
+        <main className="flex-1 overflow-auto">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { getSupabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 
 export default function SetupPage() {
-  const { user, requiresSetup, loading, clearSetupFlag } = useAuth();
+  const { user, requiresSetup, loading, refreshProfile } = useAuth();
   const router = useRouter();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +35,7 @@ export default function SetupPage() {
     e.preventDefault();
     setError('');
 
+    if (!user) return;
     if (user.requiresNameChange && !name.trim()) {
       setError('Name is required');
       return;
@@ -70,11 +71,11 @@ export default function SetupPage() {
         const { error: updateErr } = await supabase
           .from('profiles')
           .update(updates)
-          .eq('id', user.id);
+          .eq( 'id', user.id);
         if (updateErr) throw updateErr;
       }
 
-      clearSetupFlag();
+      await refreshProfile();
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.message || 'Setup failed');

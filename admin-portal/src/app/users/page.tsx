@@ -4,17 +4,21 @@ import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { DataService } from '@/lib/data';
 import type { AdminUser } from '@/lib/types';
+import { Plus } from 'lucide-react';
 
 export default function UsersPage() {
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [filtered, setFiltered] = useState<AdminUser[]>([]);
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
+  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState<AdminUser | null>(null);
   const [form, setForm] = useState({ name: '', email: '', phone: '', school: '', grade: '', role: 'student', isActive: true });
 
-  useEffect(() => { DataService.getUsers().then(u => { setUsers(u); setFiltered(u); }); }, []);
+  useEffect(() => {
+    DataService.getUsers().then(u => { setUsers(u); setFiltered(u); setLoading(false); });
+  }, []);
 
   useEffect(() => {
     let f = users;
@@ -39,7 +43,7 @@ export default function UsersPage() {
       <div className="p-6 lg:p-8 animate-in">
         <div className="flex items-start justify-between mb-6">
           <div><h1 className="page-title">User Management</h1><p className="page-subtitle">{users.length} total users</p></div>
-          <button onClick={openAdd} className="btn-primary">➕ Add User</button>
+          <button onClick={openAdd} className="btn-primary"><Plus size={16} /> Add User</button>
         </div>
 
         <div className="flex flex-wrap gap-3 mb-6">
@@ -68,25 +72,38 @@ export default function UsersPage() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map(u => (
-                  <tr key={u.id} className="hover:bg-gray-50/50">
-                    <td className="table-cell font-medium">{u.name}</td>
-                    <td className="table-cell text-gray-500">{u.email}</td>
-                    <td className="table-cell">
-                      <span className="badge" style={{ backgroundColor: roleColor(u.role) + '18', color: roleColor(u.role) }}>
-                        {u.role.charAt(0).toUpperCase() + u.role.slice(1)}
-                      </span>
-                    </td>
-                    <td className="table-cell text-gray-500">{u.school || '-'}</td>
-                    <td className="table-cell">
-                      <span className={u.isActive ? 'badge-green' : 'badge-gray'}>{u.isActive ? 'Active' : 'Inactive'}</span>
-                    </td>
-                    <td className="table-cell text-right">
-                      <button onClick={() => openEdit(u)} className="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3">Edit</button>
-                      <button onClick={() => del(u.id)} className="text-red-600 hover:text-red-800 text-sm font-medium">Delete</button>
-                    </td>
-                  </tr>
-                ))}
+                {loading ? (
+                  Array.from({ length: 5 }).map((_, i) => (
+                    <tr key={i}>
+                      <td className="table-cell"><div className="h-4 w-32 skeleton" /></td>
+                      <td className="table-cell"><div className="h-4 w-40 skeleton" /></td>
+                      <td className="table-cell"><div className="h-5 w-16 rounded-full skeleton" /></td>
+                      <td className="table-cell"><div className="h-4 w-24 skeleton" /></td>
+                      <td className="table-cell"><div className="h-5 w-14 rounded-full skeleton" /></td>
+                      <td className="table-cell"><div className="h-4 w-16 skeleton ml-auto" /></td>
+                    </tr>
+                  ))
+                ) : (
+                  filtered.map(u => (
+                    <tr key={u.id} className="hover:bg-gray-50/50">
+                      <td className="table-cell font-medium">{u.name}</td>
+                      <td className="table-cell text-gray-500">{u.email}</td>
+                      <td className="table-cell">
+                        <span className="badge" style={{ backgroundColor: roleColor(u.role) + '18', color: roleColor(u.role) }}>
+                          {u.role.charAt(0).toUpperCase() + u.role.slice(1)}
+                        </span>
+                      </td>
+                      <td className="table-cell text-gray-500">{u.school || '-'}</td>
+                      <td className="table-cell">
+                        <span className={u.isActive ? 'badge-green' : 'badge-gray'}>{u.isActive ? 'Active' : 'Inactive'}</span>
+                      </td>
+                      <td className="table-cell text-right">
+                        <button onClick={() => openEdit(u)} className="text-blue-600 hover:text-blue-800 text-sm font-medium mr-3">Edit</button>
+                        <button onClick={() => del(u.id)} className="text-red-600 hover:text-red-800 text-sm font-medium">Delete</button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

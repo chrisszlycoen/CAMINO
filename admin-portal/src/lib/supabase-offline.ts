@@ -1,61 +1,23 @@
 'use client';
 
-const CACHE_PREFIX = 'camino_cache_';
-
-function openDB(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open('camino_offline', 1);
-    req.onupgradeneeded = () => {
-      const db = req.result;
-      if (!db.objectStoreNames.contains('cache')) {
-        db.createObjectStore('cache', { keyPath: 'key' });
-      }
-      if (!db.objectStoreNames.contains('mutations')) {
-        db.createObjectStore('mutations', { keyPath: 'id', autoIncrement: true });
-      }
-    };
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-}
+const memoryCache = new Map<string, { data: any; timestamp: number }>();
 
 export async function cacheSet(key: string, data: any): Promise<void> {
-  try {
-    const db = await openDB();
-    const tx = db.transaction('cache', 'readwrite');
-    tx.objectStore('cache').put({ key: CACHE_PREFIX + key, data, timestamp: Date.now() });
-    await new Promise<void>((resolve, reject) => {
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error);
-    });
-  } catch { /* indexedDB may not be available */ }
+  memoryCache.set(key, { data, timestamp: Date.now() });
 }
 
 export async function cacheGet<T>(key: string, maxAgeMs = 300000): Promise<T | null> {
-  try {
-    const db = await openDB();
-    const tx = db.transaction('cache', 'readonly');
-    const req = tx.objectStore('cache').get(CACHE_PREFIX + key);
-    const result = await new Promise<any>((resolve, reject) => {
-      req.onsuccess = () => resolve(req.result);
-      req.onerror = () => reject(req.error);
-    });
-    if (!result) return null;
-    if (Date.now() - result.timestamp > maxAgeMs) return null;
-    return result.data as T;
-  } catch { return null; }
+  const entry = memoryCache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.timestamp > maxAgeMs) {
+    memoryCache.delete(key);
+    return null;
+  }
+  return entry.data as T;
 }
 
 export async function cacheClear(): Promise<void> {
-  try {
-    const db = await openDB();
-    const tx = db.transaction('cache', 'readwrite');
-    tx.objectStore('cache').clear();
-    await new Promise<void>((resolve, reject) => {
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error);
-    });
-  } catch { /* ignore */ }
+  memoryCache.clear();
 }
 
 export function isOnline(): boolean {

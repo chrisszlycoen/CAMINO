@@ -15,6 +15,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   clearSetupFlag: () => void;
+  refreshProfile: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -24,6 +25,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [requiresSetup, setRequiresSetup] = useState(false);
   const router = useRouter();
+
+  const fetchProfile = useCallback(async (su: any) => {
+    try {
+      const supabase = getSupabase();
+      const { data } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', su.id)
+        .single();
+
+      if (data) {
+        const authUser: AuthUser = {
+          id: data.id,
+          email: su.email || '',
+          name: data.name || su.email?.split('@')[0] || 'User',
+          role: data.role as AuthUser['role'],
+          requiresPasswordChange: data.requires_password_change ?? true,
+          requiresNameChange: data.requires_name_change ?? true,
+        };
+        setUser(authUser);
+        const needsSetup = !!(authUser.requiresPasswordChange || authUser.requiresNameChange);
+        setRequiresSetup(needsSetup);
+        if (needsSetup && window.location.pathname !== '/setup') {
+          router.push('/setup');
+        }
+      }
+    } catch {
+      setUser(null);
+    }
+    setLoading(false);
+  }, [router]);
 
   useEffect(() => {
     const supabase = getSupabase();
@@ -47,39 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     return () => subscription.unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function fetchProfile(su: any) {
-    try {
-      const supabase = getSupabase();
-      const { data } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', su.id)
-        .single();
-
-      if (data) {
-        const authUser: AuthUser = {
-          id: data.id,
-          email: su.email || '',
-          name: data.name || su.email?.split('@')[0] || 'User',
-          role: data.role as AuthUser['role'],
-          requiresPasswordChange: data.requires_password_change ?? true,
-          requiresNameChange: data.requires_name_change ?? true,
-        };
-        setUser(authUser);
-        const needsSetup = authUser.requiresPasswordChange || authUser.requiresNameChange;
-        setRequiresSetup(needsSetup);
-        if (needsSetup && window.location.pathname !== '/setup') {
-          router.push('/setup');
-        }
-      }
-    } catch {
-      setUser(null);
-    }
-    setLoading(false);
-  }
+  }, [fetchProfile]);
 
   const login = useCallback(async (email: string, password: string) => {
     const supabase = getSupabase();
@@ -98,8 +98,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setRequiresSetup(false);
   }, []);
 
+  const refreshProfile = useCallback(async () => {
+    const supabase = getSupabase();
+    const { data: { user: su } } = await supabase.auth.getUser();
+    if (su) {
+      await fetchProfile(su);
+    }
+  }, [fetchProfile]);
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: user !== null, loading, requiresSetup, login, logout, clearSetupFlag }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: user !== null, loading, requiresSetup, login, logout, clearSetupFlag, refreshProfile }}>
       {children}
     </AuthContext.Provider>
   );

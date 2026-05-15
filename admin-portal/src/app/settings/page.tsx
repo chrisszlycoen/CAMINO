@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { useAuth } from '@/lib/auth';
+import { CheckCircle, Eye, Trash2, Download } from 'lucide-react';
 
 export default function SettingsPage() {
   const { user } = useAuth();
@@ -28,7 +29,7 @@ export default function SettingsPage() {
             <div><label className="form-label">Email</label><input className="form-input" type="email" value={profile.email} onChange={e => setProfile({ ...profile, email: e.target.value })} /></div>
             <div className="flex items-center gap-3">
               <button onClick={saveProfile} className="btn-primary">Save Changes</button>
-              {saved && <span className="text-sm text-green-600 font-medium">✅ Saved successfully</span>}
+              {saved && <span className="flex items-center gap-1 text-sm text-green-600 font-medium"><CheckCircle size={14} /> Saved successfully</span>}
             </div>
           </div>
         </div>
@@ -52,7 +53,7 @@ export default function SettingsPage() {
             <div><label className="form-label">API Key</label>
               <div className="relative">
                 <input className="form-input pr-10" type="password" defaultValue="sk-camino-dev-key" />
-                <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">👁️</button>
+                <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"><Eye size={16} /></button>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -66,8 +67,8 @@ export default function SettingsPage() {
           <h2 className="text-lg font-bold mb-1 text-red-600">Danger Zone</h2>
           <p className="text-sm text-gray-500 mb-6">Irreversible actions</p>
           <div className="flex flex-wrap gap-3">
-            <button className="btn-danger">🗑️ Reset All Data</button>
-            <button className="btn-secondary border-red-200 text-red-600 hover:bg-red-50">📤 Export Data</button>
+            <button className="btn-danger flex items-center gap-2"><Trash2 size={16} /> Reset All Data</button>
+            <button className="btn-secondary border-red-200 text-red-600 hover:bg-red-50 flex items-center gap-2"><Download size={16} /> Export Data</button>
           </div>
         </div>
       </div>

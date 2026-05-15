@@ -5,6 +5,7 @@ import DashboardLayout from '@/components/DashboardLayout';
 import { DataService } from '@/lib/data';
 import type { DashboardStats } from '@/lib/types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
+import { GraduationCap, User, Users, Target } from 'lucide-react';
 
 const COLORS = ['#0A3D2F', '#007AFF', '#10B981', '#F59E0B', '#FF3B30', '#8B5CF6'];
 
@@ -37,14 +38,23 @@ export default function AnalyticsPage() {
           <p className="page-subtitle">Detailed metrics and insights</p>
         </div>
 
-        {stats && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-            <MetricCard label="Total Students" value={String(stats.totalStudents)} icon="🎓" />
-            <MetricCard label="Staff" value={String(stats.totalStaff)} icon="👤" />
-            <MetricCard label="Linked Parents" value={String(stats.linkedParents)} icon="👪" />
-            <MetricCard label="Boardings Today" value={String(stats.boardedToday)} icon="🎯" />
-          </div>
-        )}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+          {stats ? (
+            <>
+              <MetricCard label="Total Students" value={String(stats.totalStudents)} icon={GraduationCap} />
+              <MetricCard label="Staff" value={String(stats.totalStaff)} icon={User} />
+              <MetricCard label="Linked Parents" value={String(stats.linkedParents)} icon={Users} />
+              <MetricCard label="Boardings Today" value={String(stats.boardedToday)} icon={Target} />
+            </>
+          ) : (
+            <>
+              <SkeletonMetric />
+              <SkeletonMetric />
+              <SkeletonMetric />
+              <SkeletonMetric />
+            </>
+          )}
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="data-card p-6">
@@ -160,14 +170,28 @@ export default function AnalyticsPage() {
   );
 }
 
-function MetricCard({ label, value, icon }: any) {
+function MetricCard({ label, value, icon: Icon }: any) {
   return (
     <div className="stat-card">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-lg">{icon}</span>
+        <div className="w-9 h-9 rounded-lg bg-[#0A3D2F]/10 flex items-center justify-center">
+          <Icon size={16} className="text-[#0A3D2F]" />
+        </div>
         <p className="text-xs font-medium text-gray-500">{label}</p>
       </div>
       <p className="text-2xl font-black text-gray-900">{value}</p>
+    </div>
+  );
+}
+
+function SkeletonMetric() {
+  return (
+    <div className="stat-card">
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-9 h-9 rounded-lg skeleton" />
+        <div className="h-3 w-24 skeleton" />
+      </div>
+      <div className="h-8 w-12 skeleton" />
     </div>
   );
 }

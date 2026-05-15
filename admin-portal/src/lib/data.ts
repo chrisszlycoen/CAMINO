@@ -1,11 +1,20 @@
 import { getSupabase } from './supabase';
-import { cacheGet, cacheSet } from './supabase-offline';
 import type {
   AdminUser, AdminBus, AdminRoute, AdminSchedule,
   AdminAlert, DashboardStats, ChartPoint, ProfileRole,
 } from './types';
 
-const CACHE_TTL = 60000;
+async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
+  const response = await fetch(url, {
+    headers: { 'Content-Type': 'application/json' },
+    ...options,
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.error ?? `Request to ${url} failed`);
+  }
+  return response.json();
+}
 
 function mapUser(row: any): AdminUser {
   return {
@@ -71,274 +80,146 @@ function mapAlert(row: any): AdminAlert {
   };
 }
 
-async function sbQuery<T>(
-  fn: () => Promise<{ data: T | null; error: any }>,
-  cacheKey?: string,
-): Promise<T> {
-  if (cacheKey) {
-    const cached = await cacheGet<T>(cacheKey, CACHE_TTL);
-    if (cached !== null) return cached;
-  }
-  const { data, error } = await fn();
-  if (error) throw error;
-  if (!data) throw new Error('No data returned');
-  if (cacheKey) cacheSet(cacheKey, data);
-  return data;
-}
-
 const supabaseService = {
   async getUsers(): Promise<AdminUser[]> {
-    const rows = await sbQuery<any[]>(
-      () => getSupabase().from('profiles').select('*').order('created_at', { ascending: false }),
-      'users',
-    );
+    const rows = await apiFetch<any[]>('/api/users');
     return rows.map(mapUser);
   },
 
   async addUser(u: Omit<AdminUser, 'id'>): Promise<AdminUser> {
-    const sb = getSupabase();
-    const tempPassword = `${u.role}_${Date.now()}`;
-    const { data: authData, error: authError } = await sb.auth.admin.createUser({
-      email: u.email,
-      password: tempPassword,
-      email_confirm: true,
-      user_metadata: { name: u.name, role: u.role },
+    const data = await apiFetch<any>('/api/users', {
+      method: 'POST',
+      body: JSON.stringify(u),
     });
-    if (authError) throw authError;
-    if (!authData.user) throw new Error('Failed to create user');
-
-    const { data, error } = await sb.from('profiles').upsert({
-      id: authData.user.id,
-      name: u.name,
-      phone: u.phone || null,
-      role: u.role,
-      school: u.school || null,
-      grade: u.grade || null,
-      is_active: u.isActive ?? true,
-    }).select().single();
-
-    if (error) throw error;
     return mapUser(data);
   },
 
   async updateUser(u: AdminUser): Promise<AdminUser> {
-    const { data, error } = await getSupabase().from('profiles').update({
-      name: u.name,
-      phone: u.phone || null,
-      role: u.role,
-      school: u.school || null,
-      grade: u.grade || null,
-      is_active: u.isActive,
-    }).eq('id', u.id).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/users', {
+      method: 'PUT',
+      body: JSON.stringify(u),
+    });
     return mapUser(data);
   },
 
   async deleteUser(id: string): Promise<void> {
-    const { error } = await getSupabase().auth.admin.deleteUser(id);
-    if (error) throw error;
+    await apiFetch('/api/users', {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
   },
 
   async getBuses(): Promise<AdminBus[]> {
-    const rows = await sbQuery<any[]>(
-      () => getSupabase().from('buses').select('*, routes!left(name)').order('plate_number'),
-      'buses',
-    );
-    return rows.map((r: any) => ({
-      ...mapBus(r),
-      routeName: r.routes?.name || r.route_name || undefined,
-    }));
+    const rows = await apiFetch<any[]>('/api/buses');
+    return rows.map(mapBus);
   },
 
   async addBus(b: Omit<AdminBus, 'id'>): Promise<AdminBus> {
-    const { data, error } = await getSupabase().from('buses').insert({
-      plate_number: b.plateNumber,
-      capacity: b.capacity,
-      driver_name: b.driverName,
-      driver_phone: b.driverPhone || null,
-      route_id: b.routeId || null,
-      status: b.status || 'active',
-      current_passengers: (b as any).currentPassengers ?? 0,
-    }).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/buses', {
+      method: 'POST',
+      body: JSON.stringify(b),
+    });
     return mapBus(data);
   },
 
   async updateBus(b: AdminBus): Promise<AdminBus> {
-    const { data, error } = await getSupabase().from('buses').update({
-      plate_number: b.plateNumber,
-      capacity: b.capacity,
-      driver_name: b.driverName,
-      driver_phone: b.driverPhone || null,
-      route_id: b.routeId || null,
-      status: b.status,
-      current_passengers: b.currentPassengers,
-    }).eq('id', b.id).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/buses', {
+      method: 'PUT',
+      body: JSON.stringify(b),
+    });
     return mapBus(data);
   },
 
   async deleteBus(id: string): Promise<void> {
-    const { error } = await getSupabase().from('buses').delete().eq('id', id);
-    if (error) throw error;
+    await apiFetch('/api/buses', {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
   },
 
   async getRoutes(): Promise<AdminRoute[]> {
-    const rows = await sbQuery<any[]>(
-      () => getSupabase().from('routes').select('*').order('name'),
-      'routes',
-    );
+    const rows = await apiFetch<any[]>('/api/routes');
     return rows.map(mapRoute);
   },
 
   async addRoute(r: Omit<AdminRoute, 'id'>): Promise<AdminRoute> {
-    const { data, error } = await getSupabase().from('routes').insert({
-      name: r.name,
-      stops: r.stops,
-      status: r.status || 'active',
-    }).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/routes', {
+      method: 'POST',
+      body: JSON.stringify(r),
+    });
     return mapRoute(data);
   },
 
   async updateRoute(r: AdminRoute): Promise<AdminRoute> {
-    const { data, error } = await getSupabase().from('routes').update({
-      name: r.name,
-      stops: r.stops,
-      status: r.status,
-    }).eq('id', r.id).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/routes', {
+      method: 'PUT',
+      body: JSON.stringify(r),
+    });
     return mapRoute(data);
   },
 
   async deleteRoute(id: string): Promise<void> {
-    const { error } = await getSupabase().from('routes').delete().eq('id', id);
-    if (error) throw error;
+    await apiFetch('/api/routes', {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
   },
 
   async getSchedules(): Promise<AdminSchedule[]> {
-    const rows = await sbQuery<any[]>(
-      () => getSupabase().from('schedules').select('*, buses!inner(plate_number), routes!inner(name)').order('date', { ascending: false }),
-      'schedules',
-    );
-    return rows.map((r: any) => ({
-      ...mapSchedule(r),
-      busPlate: r.buses?.plate_number || r.bus_plate || '',
-      routeName: r.routes?.name || r.route_name || '',
-    }));
+    const rows = await apiFetch<any[]>('/api/schedules');
+    return rows.map(mapSchedule);
   },
 
   async addSchedule(s: Omit<AdminSchedule, 'id'>): Promise<AdminSchedule> {
-    const { data, error } = await getSupabase().from('schedules').insert({
-      bus_id: s.busId,
-      route_id: s.routeId,
-      date: s.date,
-      departure_time: s.departureTime,
-      arrival_time: s.arrivalTime,
-      status: s.status || 'scheduled',
-    }).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/schedules', {
+      method: 'POST',
+      body: JSON.stringify(s),
+    });
     return mapSchedule(data);
   },
 
   async updateSchedule(s: AdminSchedule): Promise<AdminSchedule> {
-    const { data, error } = await getSupabase().from('schedules').update({
-      bus_id: s.busId,
-      route_id: s.routeId,
-      date: s.date,
-      departure_time: s.departureTime,
-      arrival_time: s.arrivalTime,
-      status: s.status,
-    }).eq('id', s.id).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/schedules', {
+      method: 'PUT',
+      body: JSON.stringify(s),
+    });
     return mapSchedule(data);
   },
 
   async deleteSchedule(id: string): Promise<void> {
-    const { error } = await getSupabase().from('schedules').delete().eq('id', id);
-    if (error) throw error;
+    await apiFetch('/api/schedules', {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
   },
 
   async getAlerts(): Promise<AdminAlert[]> {
-    const rows = await sbQuery<any[]>(
-      () => getSupabase().from('alerts').select('*').order('created_at', { ascending: false }),
-      'alerts',
-    );
+    const rows = await apiFetch<any[]>('/api/alerts');
     return rows.map(mapAlert);
   },
 
   async addAlert(a: Omit<AdminAlert, 'id' | 'createdAt'>): Promise<AdminAlert> {
     const supabase = getSupabase();
     const { data: { user } } = await supabase.auth.getUser();
-    const { data, error } = await supabase.from('alerts').insert({
-      title: a.title,
-      message: a.message,
-      severity: a.severity,
-      status: 'active',
-      created_by: user?.id || null,
-    }).select().single();
-
-    if (error) throw error;
+    const data = await apiFetch<any>('/api/alerts', {
+      method: 'POST',
+      body: JSON.stringify({ ...a, createdBy: user?.id || null }),
+    });
     return mapAlert(data);
   },
 
   async resolveAlert(id: string, resolvedBy: string): Promise<AdminAlert | undefined> {
     const supabase = getSupabase();
     const { data: { user } } = await supabase.auth.getUser();
-    const { data, error } = await supabase.from('alerts').update({
-      status: 'resolved',
-      resolved_by: user?.id || null,
-      resolved_at: new Date().toISOString(),
-    }).eq('id', id).select().single();
-
-    if (error) throw error;
-    const alert = mapAlert(data);
-    alert.resolvedBy = resolvedBy;
-    return alert;
+    const data = await apiFetch<any>('/api/alerts', {
+      method: 'PUT',
+      body: JSON.stringify({ id, status: 'resolved', resolvedBy: user?.id || null }),
+    });
+    return mapAlert(data);
   },
 
   async getDashboardStats(): Promise<DashboardStats> {
-    const cacheKey = 'dashboard_stats';
-    const cached = await cacheGet<DashboardStats>(cacheKey, CACHE_TTL);
-    if (cached !== null) return cached;
-
-    const supabase = getSupabase();
-    const [
-      { count: totalStudents },
-      { count: activeBuses },
-      { count: totalRoutes },
-      { count: pendingAlerts },
-      { count: totalStaff },
-      { count: linkedParents },
-    ] = await Promise.all([
-      supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('role', 'student'),
-      supabase.from('buses').select('*', { count: 'exact', head: true }).eq('status', 'active'),
-      supabase.from('routes').select('*', { count: 'exact', head: true }).eq('status', 'active'),
-      supabase.from('alerts').select('*', { count: 'exact', head: true }).eq('status', 'active'),
-      supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('role', 'staff'),
-      supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('role', 'parent'),
-    ]);
-
-    const stats: DashboardStats = {
-      totalStudents: totalStudents ?? 0,
-      activeBuses: activeBuses ?? 0,
-      totalRoutes: totalRoutes ?? 0,
-      onTimeRate: 87.5,
-      pendingAlerts: pendingAlerts ?? 0,
-      boardedToday: 116,
-      totalStaff: totalStaff ?? 0,
-      linkedParents: linkedParents ?? 0,
-    };
-
-    cacheSet(cacheKey, stats);
-    return stats;
+    return apiFetch<DashboardStats>('/api/stats');
   },
 
   getWeeklyData(): ChartPoint[] {
